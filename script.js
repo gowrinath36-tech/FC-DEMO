@@ -1,73 +1,197 @@
 // ============================================
-// FOREST CAFE — INTERACTION & SCROLL CHOREOGRAPHY
-// Desktop: 4-layer parallax
-// Mobile: Single image + subtle parallax
+// FOREST CAFE — "FC MAIN NEW" ANIMATION ENGINE
+// GSAP + ScrollTrigger + MotionPathPlugin
 // ============================================
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-const reduceMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
-
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ============================================
-// NAV BACKGROUND ON SCROLL
+// PRELOADER SCREEN ("BREWING THE EXPERIENCE")
+// Teapot animation + progress percentage fill
 // ============================================
+(function initPreloader() {
+  const loader = document.getElementById("loader");
+  const loaderVideo = document.getElementById("loader-video");
+  const fillBar = document.getElementById("loaderFillBar");
 
-const nav = document.getElementById("nav");
+  if (!loader) return;
 
-if (nav) {
+  // Lock scroll initially
+  document.body.style.overflow = "hidden";
 
-  ScrollTrigger.create({
+  let progress = 0;
+  let isFinished = false;
+  let animationFrame;
 
-    start: 100,
+  function setProgress(val) {
+    progress = Math.min(100, Math.max(progress, val));
+    if (fillBar) fillBar.style.width = `${progress}%`;
+    loader.setAttribute("aria-valuenow", Math.round(progress));
 
-    onUpdate: (self) => {
+    if (progress >= 100 && !isFinished) {
+      finishPreloader();
+    }
+  }
 
-      if (self.scroll() > 80) {
-        nav.classList.add("scrolled");
-      } else {
-        nav.classList.remove("scrolled");
-      }
+  function finishPreloader() {
+    if (isFinished) return;
+    isFinished = true;
+    cancelAnimationFrame(animationFrame);
 
+    // Wait a beat at 100% for user satisfaction, then fade into hero
+    setTimeout(() => {
+      gsap.to(loader, {
+        opacity: 0,
+        scale: 1.03,
+        duration: 0.85,
+        ease: "power2.inOut",
+        onComplete: () => {
+          loader.classList.add("hidden");
+          document.body.style.overflow = "auto";
+
+          // Start interactive components
+          requestAnimationFrame(() => {
+            revealHero();
+            initSoilToSipJourney();
+            initCafeAmbience();
+            initTextReveal();
+            if (typeof ScrollTrigger !== "undefined") {
+              ScrollTrigger.refresh();
+            }
+          });
+        }
+      });
+    }, 280);
+  }
+
+  if (reduceMotion) {
+    setProgress(100);
+    return;
+  }
+
+  // Smooth progress hybrid
+  let startTime = performance.now();
+  const minDuration = 2400; // 2.4s for pleasant intro
+
+  function updateProgress(now) {
+    const elapsed = now - startTime;
+    let target = (elapsed / minDuration) * 90;
+
+    if (loaderVideo && loaderVideo.duration && !isNaN(loaderVideo.duration)) {
+      const videoPercent = (loaderVideo.currentTime / loaderVideo.duration) * 100;
+      target = Math.max(target, videoPercent);
     }
 
+    if (elapsed >= minDuration) {
+      target = 100;
+    }
+
+    setProgress(target);
+
+    if (progress < 100) {
+      animationFrame = requestAnimationFrame(updateProgress);
+    }
+  }
+
+  if (loaderVideo) {
+    loaderVideo.play().catch(() => {});
+    loaderVideo.addEventListener("ended", () => setProgress(100), { once: true });
+  }
+
+  animationFrame = requestAnimationFrame(updateProgress);
+
+  // Safety fallback
+  setTimeout(() => setProgress(100), 5500);
+})();
+
+// ============================================
+// STICKY HEADER & NAV SCROLLSPY
+// Dark-brown bar (#1c1410) with smooth scroll binding
+// ============================================
+(function initNavigation() {
+  const header = document.getElementById("site-header");
+  const navLinks = document.querySelectorAll(".nav-links .nav-link");
+  const sections = document.querySelectorAll("section[id]");
+
+  if (header) {
+    ScrollTrigger.create({
+      start: 60,
+      onUpdate: (self) => {
+        if (self.scroll() > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
+    });
+  }
+
+  // Smooth Anchor Scrolling
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (targetId === "#") return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const headerOffset = 70;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    });
   });
 
-}
+  // Active Link ScrollSpy
+  if (navLinks.length && sections.length) {
+    function updateActiveNav() {
+      const scrollY = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
 
+      if (scrollY + windowHeight >= docHeight - 50) {
+        navLinks.forEach((link, idx) => {
+          link.classList.toggle("active", idx === navLinks.length - 1);
+        });
+        return;
+      }
+
+      sections.forEach((sec) => {
+        const secTop = sec.offsetTop - 140;
+        const secHeight = sec.offsetHeight;
+        const id = sec.getAttribute("id");
+
+        if (scrollY >= secTop && scrollY < secTop + secHeight) {
+          navLinks.forEach((link) => {
+            link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+          });
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+  }
+})();
 
 // ============================================
-// FOREST CAFE HERO BRAND REVEAL
-// Logo + wordmark: idle breathing float,
-// independent of the scroll-driven parallax.
+// HERO BRAND REVEAL — ORGANIC FLOAT & WIND
 // ============================================
-
 function initHeroBrandFloat() {
-
   const brand = document.querySelector("#hero-brand-reveal");
   const logo = document.querySelector("#hero-brand-logo");
   const text = document.querySelector("#hero-brand-text");
 
   if (!brand) return;
 
-
-  // Always start fully visible in place
-  // xPercent:-50 + x:0 = centering (GSAP owns this now,
-  // make sure CSS .hero-brand-reveal has NO transform line)
   gsap.set(brand, { opacity: 1, xPercent: -50, x: 0, y: 0, scale: 1 });
 
-
-  // Reduced motion: no idle float, just show it
   if (reduceMotion) return;
-
-
-  // ----------------------------------------
-  // Slow, organic breathing / wind drift
-  // Logo and text move together, with the
-  // text getting a touch of independent motion
-  // ----------------------------------------
 
   const floatTl = gsap.timeline({
     repeat: -1,
@@ -76,661 +200,377 @@ function initHeroBrandFloat() {
   });
 
   floatTl
-    .to(brand, { y: -9, x: 3, duration: 5.5 }, 0)
-    .to(logo, { opacity: 0.94, duration: 3.6 }, 0.2)
-    .to(
-      text,
-      { y: -5, x: -3, opacity: 0.95, duration: 4.4 },
-      0.4
-    );
+    .to(brand, { y: -10, x: 4, duration: 5.5 }, 0)
+    .to(logo, { opacity: 0.95, duration: 3.5 }, 0.2)
+    .to(text, { y: -6, x: -3, opacity: 0.95, duration: 4.5 }, 0.4);
 
-  // Keep a handle for pausing once it's scrolled out of view
   brand._floatTl = floatTl;
 
-
-  // ----------------------------------------
-  // FOREST CAFE HERO BRAND REVEAL — wind streaks
-  // Gentle flowing dash + opacity breathing
-  // ----------------------------------------
-
   const windLines = brand.querySelectorAll(".wind-line");
-
   if (windLines.length) {
-
     gsap.to(windLines, {
-      strokeDashoffset: -60,
-      duration: 6,
+      strokeDashoffset: -70,
+      duration: 5.5,
       ease: "none",
       repeat: -1,
-      stagger: 0.8
+      stagger: 0.6
     });
 
     gsap.to(windLines, {
-      opacity: 0.15,
-      duration: 3.5,
+      opacity: 0.2,
+      duration: 3,
       ease: "sine.inOut",
       yoyo: true,
       repeat: -1,
-      stagger: 0.5
+      stagger: 0.4
     });
-
   }
-
 }
 
-
 // ============================================
-// HERO SECTION PIN & REVEAL
+// HERO SECTION PARALLAX & REVEAL (UNCLIPPED LAYERS)
 // ============================================
-
 function revealHero() {
-
-  if (typeof gsap === "undefined") return;
-
   const hero = document.querySelector("#hero");
-
   if (!hero) return;
 
-
-  // FOREST CAFE HERO BRAND REVEAL — idle float
   initHeroBrandFloat();
 
-
-  // ==========================================
-  // DESKTOP HERO
-  // ==========================================
-
-  const desktopMedia = gsap.matchMedia();
-
-  desktopMedia.add(
-    "(min-width: 769px)",
-    () => {
-
-      // -------------------------------
-      // Initial states
-      // -------------------------------
-
-      gsap.set(
-        [
-          "#hero-layer-2 img",
-          "#hero-layer-3 img",
-          "#hero-layer-4 img"
-        ],
-        {
-          yPercent: 100
-        }
-      );
-
-
-      gsap.set(
-        ".hero-content",
-        {
-          opacity: 0,
-          y: 50
-        }
-      );
-
-
-      gsap.set(
-        [".card-left", ".card-right"],
-        {
-          opacity: 0,
-          y: 50
-        }
-      );
-
-
-      // -------------------------------
-      // Desktop parallax timeline
-      // -------------------------------
-
-      const tl = gsap.timeline({
-
-        scrollTrigger: {
-
-          trigger: "#hero",
-
-          start: "top top",
-
-          end: "+=250%",
-
-          scrub: 1,
-
-          pin: true,
-
-          anticipatePin: 1,
-
-          invalidateOnRefresh: true
-
-        }
-
-      });
-
-
-      tl
-
-        // TREELINE
-        .to(
-          "#hero-layer-2 img",
-          {
-            yPercent: 12,
-            ease: "none"
-          }
-        )
-
-
-        // CAFE
-        .to(
-          "#hero-layer-3 img",
-          {
-            yPercent: 8,
-            ease: "none"
-          },
-          "-=0.3"
-        )
-
-
-        // FOREGROUND
-        .to(
-          "#hero-layer-4 img",
-          {
-            yPercent: 0,
-            ease: "none"
-          },
-          "-=0.3"
-        )
-
-
-        // FOREST CAFE HERO BRAND REVEAL — quick, light fade
-        // right at the very start of scroll, well before
-        // treeline/cafe layers rise into that area.
-        .to(
-          "#hero-brand-reveal",
-          Object.assign(
-            {
-              opacity: 0,
-              ease: reduceMotion ? "none" : "power1.in",
-              duration: 0.15,
-              onStart: () => {
-                const brand = document.querySelector("#hero-brand-reveal");
-                if (brand && brand._floatTl) brand._floatTl.pause();
-              },
-              onReverseComplete: () => {
-                const brand = document.querySelector("#hero-brand-reveal");
-                if (brand && brand._floatTl) brand._floatTl.play();
-              }
-            },
-            reduceMotion ? {} : { y: -14, scale: 0.97 }
-          ),
-          0
-        )
-
-
-        // HERO CONTENT
-        .to(
-          ".hero-content",
-          {
-            opacity: 1,
-            y: 0,
-            ease: "none"
-          },
-          "-=0.1"
-        )
-
-
-        // LEFT CARD
-        .to(
-          ".card-left",
-          {
-            opacity: 1,
-            y: 0,
-            ease: "none"
-          },
-          "<"
-        )
-
-
-        // RIGHT CARD
-        .to(
-          ".card-right",
-          {
-            opacity: 1,
-            y: 0,
-            ease: "none"
-          },
-          "<"
-        );
-
-    }
-  );
-
-
-  // ==========================================
-  // MOBILE HERO
-  // ==========================================
-
-  desktopMedia.add(
-    "(max-width: 768px)",
-    () => {
-
-      const mobileImage = hero.querySelector(
-        ".hero-mobile-image img"
-      );
-
-      const mobileContent = hero.querySelector(
-        ".hero-content"
-      );
-
-
-      if (!mobileImage) return;
-
-
-      // ----------------------------------------
-      // Initial mobile state
-      // ----------------------------------------
-
-      gsap.set(
-        mobileImage,
-        {
-          yPercent: 0,
-          scale: 1.04
-        }
-      );
-
-
-      if (mobileContent) {
-
-        gsap.set(
-          mobileContent,
-          {
-            opacity: 0,
-            y: 25
-          }
-        );
-
-      }
-
-
-      // ----------------------------------------
-      // MOBILE SUBTLE PARALLAX
-      // ----------------------------------------
-
-      const mobileTimeline = gsap.timeline({
-
-        scrollTrigger: {
-
-          trigger: hero,
-
-          start: "top top",
-
-          /*
-            Smaller than desktop.
-            Only a little scroll movement.
-          */
-
-          end: "+=110%",
-
-          scrub: 0.8,
-
-          pin: true,
-
-          anticipatePin: 1,
-
-          invalidateOnRefresh: true
-
-        }
-
-      });
-
-
-      mobileTimeline
-
-        // --------------------------------------
-        // Image moves VERY SLOWLY
-        // --------------------------------------
-
-        .to(
-          mobileImage,
-          {
-            yPercent: -6,
-            scale: 1,
-            ease: "none"
-          }
-        )
-
-
-        // --------------------------------------
-        // FOREST CAFE HERO BRAND REVEAL — fades
-        // away as the mobile hero settles in
-        // --------------------------------------
-
-        .to(
-          "#hero-brand-reveal",
-          Object.assign(
-            {
-              opacity: 0,
-              ease: reduceMotion ? "none" : "power1.in",
-              duration: 0.15,
-              onStart: () => {
-                const brand = document.querySelector("#hero-brand-reveal");
-                if (brand && brand._floatTl) brand._floatTl.pause();
-              },
-              onReverseComplete: () => {
-                const brand = document.querySelector("#hero-brand-reveal");
-                if (brand && brand._floatTl) brand._floatTl.play();
-              }
-            },
-            reduceMotion ? {} : { y: -14, scale: 0.97 }
-          ),
-          0
-        )
-
-
-        // --------------------------------------
-        // Content gently appears
-        // --------------------------------------
-
-        .to(
-          mobileContent,
-          {
-            opacity: 1,
-            y: 0,
-            ease: "none"
-          },
-          "-=0.25"
-        );
-
-    }
-  );
-
-}
-
-
-// ============================================
-// LOADER → HERO START
-// ============================================
-
-window.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    const loader =
-      document.getElementById("loader");
-
-    const loaderVideo =
-      document.getElementById("loader-video");
-
-
-    let finished = false;
-
-
-    function startWebsite() {
-
-      if (finished) return;
-
-      finished = true;
-
-
-      // ----------------------------------------
-      // Remove loader
-      // ----------------------------------------
-
-      if (loader) {
-        loader.classList.add("hidden");
-      }
-
-
-      // ----------------------------------------
-      // Allow scrolling
-      // ----------------------------------------
-
-      document.body.style.overflow = "auto";
-
-
-      // ----------------------------------------
-      // Start website
-      // ----------------------------------------
-
-      requestAnimationFrame(() => {
-
-        // HERO
-        revealHero();
-
-        // SOIL TO SIP
-        initSoilToSip();
-
-        // CAFE AMBIENCE
-        initCafeAmbience();
-
-        // TEXT REVEAL (menu + products headings)
-        initTextReveal();
-
-        // Refresh GSAP
-        if (typeof ScrollTrigger !== "undefined") {
-          ScrollTrigger.refresh();
-        }
-
-      });
-
-    }
-
-
-    // ==========================================
-    // REDUCED MOTION
-    // ==========================================
-
-    if (reduceMotion) {
-
-      startWebsite();
-
-      return;
-
-    }
-
-
-    // ==========================================
-    // VIDEO LOADER
-    // ==========================================
-
-    if (loaderVideo) {
-
-
-      // Make sure video starts
-
-      loaderVideo
-        .play()
-        .catch(() => {});
-
-
-      // Video completed
-
-      loaderVideo.addEventListener(
-        "ended",
-        startWebsite,
-        {
-          once: true
-        }
-      );
-
-
-      // Safety fallback
-
-      setTimeout(
-        startWebsite,
-        7000
-      );
-
-
-    } else {
-
-
-      // No video → immediately start
-
-      startWebsite();
-
-    }
-
-  }
-);
-
-
-
-// ============================================
-// SOIL TO SIP — JOURNEY CARDS REVEAL
-// (This was previously called but never defined,
-// causing "initSoilToSip is not defined".)
-// Runs independently of the Hero GSAP timeline —
-// different trigger, different elements.
-// ============================================
-
-function initSoilToSip() {
-
-  if (typeof gsap === "undefined") return;
-  if (typeof ScrollTrigger === "undefined") return;
-
-  const section = document.querySelector("#soil-to-sip");
-
-  if (!section) return;
-
-  const journeyCards = section.querySelectorAll(".journey-card");
-
-  if (!journeyCards.length) return;
-
-
-  // ------------------------------------------
-  // Respect reduced motion
-  // ------------------------------------------
-
-  if (reduceMotion) {
-    gsap.set(journeyCards, { opacity: 1, y: 0 });
-    return;
-  }
-
-
-  // ------------------------------------------
-  // Initial state
-  // ------------------------------------------
-
-  gsap.set(journeyCards, {
-    opacity: 0,
-    y: 40
-  });
-
-
-  // ------------------------------------------
-  // Reveal as the section scrolls into view
-  // ------------------------------------------
-
-  gsap.to(journeyCards, {
-
-    opacity: 1,
-    y: 0,
-
-    stagger: 0.08,
-    ease: "power2.out",
-
-    scrollTrigger: {
-      trigger: section,
-      start: "top 75%",
-      end: "top 25%",
-      scrub: 1,
-      invalidateOnRefresh: true
-    }
-
-  });
-
-}
-
-
-// ============================================
-// CAFE AMBIENCE — AUTOMATIC HORIZONTAL MOVEMENT
-// Desktop only — mobile uses a plain
-// horizontally-scrollable row (see style.css)
-// so it never fights native touch scrolling.
-// Runs continuously, independent of scroll —
-// not tied to a ScrollTrigger scrub.
-// ============================================
-
-function initCafeAmbience() {
-
-  if (typeof gsap === "undefined") return;
-
-  const cafeTrack = document.querySelector(
-    ".cafe-ambience-cards"
-  );
-
-  if (!cafeTrack) return;
-
-  const cards = cafeTrack.querySelectorAll(
-    ".cafe-card"
-  );
-
-  if (!cards.length) return;
-
-  if (reduceMotion) return;
-
-
-  const desktopMedia = gsap.matchMedia();
-
-  desktopMedia.add("(min-width: 769px)", () => {
-
-    const getDistance = () => {
-
-      return Math.max(
-        0,
-        cafeTrack.scrollWidth -
-        window.innerWidth +
-        260
-      );
-
-    };
-
-
-    const tween = gsap.to(cafeTrack, {
-
-      x: () => -getDistance(),
-
-      duration: 16,
-
-      ease: "sine.inOut",
-
-      repeat: -1,
-
-      yoyo: true
-
+  const mm = gsap.matchMedia();
+
+  // Desktop 4-Layer Parallax
+  mm.add("(min-width: 769px)", () => {
+    gsap.set(["#hero-layer-2 img", "#hero-layer-3 img", "#hero-layer-4 img"], {
+      yPercent: 85
     });
 
+    gsap.set(".hero-content", { opacity: 0, y: 45 });
+    gsap.set([".card-left", ".card-right"], { opacity: 0, y: 40 });
 
-    return () => tween.kill();
+    const heroTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "+=240%",
+        scrub: 1.5,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
 
+    heroTl
+      // Treeline & Leaves rise
+      .to("#hero-layer-2 img", { yPercent: 0, ease: "none", duration: 1 }, 0)
+      // Cafe entrance & roofline emerges
+      .to("#hero-layer-3 img", { yPercent: 0, ease: "none", duration: 1.2 }, 0.2)
+      // Foreground hanging lamp fixtures & plants emerge 100% full
+      .to("#hero-layer-4 img", { yPercent: 0, ease: "none", duration: 1.3 }, 0.4)
+      // Brand reveal gently fades
+      .to(
+        "#hero-brand-reveal",
+        {
+          opacity: 0,
+          y: -20,
+          scale: 0.95,
+          duration: 0.4,
+          ease: "power1.in",
+          onStart: () => {
+            const b = document.querySelector("#hero-brand-reveal");
+            if (b && b._floatTl) b._floatTl.pause();
+          },
+          onReverseComplete: () => {
+            const b = document.querySelector("#hero-brand-reveal");
+            if (b && b._floatTl) b._floatTl.play();
+          }
+        },
+        0.1
+      )
+      // Hero content typography emerges
+      .to(".hero-content", { opacity: 1, y: 0, ease: "power1.out", duration: 0.8 }, 0.7)
+      // Floating feature badges
+      .to(".card-left", { opacity: 1, y: 0, ease: "power1.out", duration: 0.8 }, 0.8)
+      .to(".card-right", { opacity: 1, y: 0, ease: "power1.out", duration: 0.8 }, 0.85);
   });
 
+  // Mobile Parallax
+  mm.add("(max-width: 768px)", () => {
+    const mobileImg = hero.querySelector(".hero-mobile-image img");
+    const content = hero.querySelector(".hero-content");
+
+    if (mobileImg) {
+      gsap.set(mobileImg, { yPercent: 0, scale: 1.05 });
+      if (content) gsap.set(content, { opacity: 0, y: 30 });
+
+      const mobileTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: "+=120%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1
+        }
+      });
+
+      mobileTl
+        .to(mobileImg, { yPercent: -5, scale: 1, ease: "none" }, 0)
+        .to("#hero-brand-reveal", { opacity: 0, duration: 0.2 }, 0)
+        .to(content, { opacity: 1, y: 0, ease: "power1.out" }, 0.3);
+    }
+  });
 }
 
-/* ============================================
-   TEXT REVEAL — word by word, on scroll
-   Splits any [data-reveal-text] element into
-   individual words (keeping <br> etc. intact),
-   wraps each in an overflow-hidden span, and
-   animates them in with GSAP as the element
-   scrolls into view. Gives headings their own
-   quiet bit of movement instead of just popping
-   in flat.
-   ============================================ */
+// ============================================
+// SOIL TO SIP PINNED JOURNEY (LEFT-TO-RIGHT DIRECTION)
+// - Pinning (#soil-to-sip, pin: true) with scrub: 1.5
+// - MotionPathPlugin: Coffee bean animates Left-to-Right ABOVE card margins
+// - Clean Step Node SVGs (Planting, Beans, Grinder, Terminal Cup)
+// - Terminal Cup at z-index: 20 with overflow: visible
+// ============================================
+function initSoilToSipJourney() {
+  const section = document.querySelector("#soil-to-sip");
+  if (!section) return;
 
+  const trackWrapper = section.querySelector(".journey-track-wrapper");
+  const journeyCards = section.querySelectorAll(".journey-card");
+  const coffeeBean = document.querySelector("#coffee-bean");
+  const motionPath = document.querySelector("#journey-motion-path");
+  const terminalCup = document.querySelector("#terminal-cup");
+  const nodePlanting = document.querySelector("#node-planting");
+  const nodeBeans = document.querySelector("#node-beans");
+  const nodeGrinder = document.querySelector("#node-grinder");
+
+  const mm = gsap.matchMedia();
+
+  // Desktop Pinned Journey Choreography
+  mm.add("(min-width: 769px)", () => {
+    // Initial States
+    if (journeyCards.length) {
+      gsap.set(journeyCards, { opacity: 0, y: 30, scale: 0.96 });
+    }
+
+    if (coffeeBean && motionPath) {
+      gsap.set(coffeeBean, {
+        opacity: 0,
+        scale: 0.6,
+        motionPath: {
+          path: motionPath,
+          align: motionPath,
+          alignOrigin: [0.5, 0.5],
+          start: 0,
+          end: 0
+        }
+      });
+    }
+
+    if (terminalCup) {
+      gsap.set(terminalCup, { scale: 1 });
+    }
+
+    const getTrackShift = () => {
+      if (!trackWrapper) return 0;
+      const trackRight = trackWrapper.offsetLeft + trackWrapper.offsetWidth;
+      return Math.max(0, trackRight - window.innerWidth + 40);
+    };
+
+    // Pinned Master Timeline
+    const masterJourneyTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "+=260%",
+        scrub: 1.5,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    // Step 1: Journey Cards Sequential Stagger Entrance (01 Soil to 08 Sip)
+    if (journeyCards.length) {
+      masterJourneyTl.to(
+        journeyCards,
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.07,
+          ease: "power2.out",
+          duration: 1.0
+        },
+        0
+      );
+    }
+
+    // Step 2: Track Horizontal Glide if viewport is narrower than track width
+    if (trackWrapper) {
+      masterJourneyTl.to(
+        trackWrapper,
+        {
+          x: () => -getTrackShift(),
+          duration: 3.2,
+          ease: "power1.inOut"
+        },
+        0.3
+      );
+    }
+
+    // Step 3: Coffee Bean Appears at Genesis (Planting Node on Left)
+    if (coffeeBean) {
+      masterJourneyTl.to(
+        coffeeBean,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.3,
+          ease: "back.out(2)"
+        },
+        0.2
+      );
+    }
+
+    // Pulse node 1 (Planting)
+    if (nodePlanting) {
+      masterJourneyTl.to(nodePlanting, { scale: 1.15, duration: 0.3, yoyo: true, repeat: 1 }, 0.3);
+    }
+
+    // Step 4: Coffee Bean Motion Path Traversal (Left-to-Right ABOVE Cards)
+    if (coffeeBean && motionPath) {
+      masterJourneyTl.to(
+        coffeeBean,
+        {
+          motionPath: {
+            path: motionPath,
+            align: motionPath,
+            alignOrigin: [0.5, 0.5],
+            autoRotate: 90,
+            start: 0,
+            end: 1
+          },
+          duration: 3.2,
+          ease: "power1.inOut"
+        },
+        0.3
+      );
+
+      // Pulse node 2 (Harvest / Beans) near halfway
+      if (nodeBeans) {
+        masterJourneyTl.to(nodeBeans, { scale: 1.15, duration: 0.3, yoyo: true, repeat: 1 }, 1.5);
+      }
+
+      // Pulse node 3 (Grinder) near 75%
+      if (nodeGrinder) {
+        masterJourneyTl.to(nodeGrinder, { scale: 1.15, duration: 0.3, yoyo: true, repeat: 1 }, 2.4);
+      }
+
+      // Bean lands into terminal coffee cup
+      masterJourneyTl.to(
+        coffeeBean,
+        {
+          scale: 0.2,
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.in"
+        },
+        3.3
+      );
+    }
+
+    // Step 5: Terminal Cup Reaction (Crema & Steam Activation, z-index: 20)
+    if (terminalCup) {
+      masterJourneyTl.to(
+        terminalCup,
+        {
+          scale: 1.15,
+          duration: 0.45,
+          ease: "back.out(2)",
+          onStart: () => {
+            terminalCup.classList.add("active");
+          },
+          onReverseComplete: () => {
+            terminalCup.classList.remove("active");
+          }
+        },
+        3.35
+      );
+    }
+
+    // Settling pause before unpinning cleanly
+    masterJourneyTl.to({}, { duration: 0.4 });
+  });
+
+  // Mobile Fallback: Natural Scroll Reveal
+  mm.add("(max-width: 768px)", () => {
+    if (journeyCards.length) {
+      gsap.fromTo(
+        journeyCards,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 70%",
+            end: "top 20%",
+            scrub: 1
+          }
+        }
+      );
+    }
+  });
+}
+
+// ============================================
+// CAFE AMBIENCE — NATURAL LEFT-TO-RIGHT HORIZONTAL MOVEMENT
+// ============================================
+function initCafeAmbience() {
+  const cafeTrack = document.querySelector(".cafe-ambience-cards");
+  if (!cafeTrack || reduceMotion) return;
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 769px)", () => {
+    const getDistance = () => {
+      const parent = cafeTrack.parentElement;
+      const parentWidth = parent ? parent.clientWidth : window.innerWidth;
+      return Math.max(0, cafeTrack.scrollWidth - parentWidth + 80);
+    };
+
+    // Animate Left-to-Right (from negative offset towards 0)
+    gsap.set(cafeTrack, { x: () => -getDistance() });
+
+    const driftTween = gsap.to(cafeTrack, {
+      x: 0,
+      duration: 20,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true
+    });
+
+    return () => driftTween.kill();
+  });
+}
+
+// ============================================
+// WORD-BY-WORD HEADLINE TEXT REVEAL
+// ============================================
 function splitIntoRevealWords(el) {
+  if (el.dataset.revealed === "true") {
+    return el.querySelectorAll(".reveal-word");
+  }
+  el.dataset.revealed = "true";
 
   function walk(node) {
     const frag = document.createDocumentFragment();
 
     node.childNodes.forEach((child) => {
-
       if (child.nodeType === Node.TEXT_NODE) {
-
         const parts = child.textContent.split(/(\s+)/);
-
         parts.forEach((part) => {
-
           if (part.trim() === "") {
             frag.appendChild(document.createTextNode(part));
             return;
@@ -745,13 +585,10 @@ function splitIntoRevealWords(el) {
 
           wrap.appendChild(word);
           frag.appendChild(wrap);
-
         });
-
       } else {
         frag.appendChild(child.cloneNode(true));
       }
-
     });
 
     return frag;
@@ -765,17 +602,11 @@ function splitIntoRevealWords(el) {
 }
 
 function initTextReveal() {
-
-  if (typeof gsap === "undefined") return;
-
   const targets = document.querySelectorAll("[data-reveal-text]");
-
   if (!targets.length) return;
 
   targets.forEach((el) => {
-
     const words = splitIntoRevealWords(el);
-
     if (!words.length) return;
 
     if (reduceMotion) {
@@ -783,138 +614,83 @@ function initTextReveal() {
       return;
     }
 
-    gsap.set(words, { yPercent: 130, opacity: 0 });
+    gsap.set(words, { yPercent: 120, opacity: 0 });
 
     gsap.to(words, {
-
       yPercent: 0,
       opacity: 1,
-
       duration: 0.9,
       ease: "power3.out",
-      stagger: 0.045,
-
+      stagger: 0.04,
       scrollTrigger: {
         trigger: el,
         start: "top 88%",
         toggleActions: "play none none reverse"
       }
-
     });
-
   });
-
 }
 
+// ============================================
+// FULL MENU LIGHTBOX MODAL
+// ============================================
+(function initMenuModal() {
+  const openBtns = document.querySelectorAll(".btn-view-menu");
+  const closeBtn = document.getElementById("closeMenuBtn");
+  const modal = document.getElementById("menuModal");
+  let previousActiveEl = null;
 
-/* ============================================
-   NAV SCROLLSPY & SMOOTH SCROLL
-   ============================================ */
+  if (!openBtns.length || !modal || !closeBtn) return;
 
-(function () {
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const sections = document.querySelectorAll("section[id]");
-
-  if (!navLinks.length || !sections.length) return;
-
-  function updateActiveNav() {
-    const scrollY = window.pageYOffset;
-
-    sections.forEach((sec) => {
-      const secTop = sec.offsetTop - 150;
-      const secHeight = sec.offsetHeight;
-      const id = sec.getAttribute("id");
-
-      if (scrollY >= secTop && scrollY < secTop + secHeight) {
-        navLinks.forEach((link) => {
-          if (link.getAttribute("href") === `#${id}`) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
-      }
-    });
+  function openModal(trigger) {
+    previousActiveEl = trigger || document.activeElement;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
   }
 
-  window.addEventListener("scroll", updateActiveNav, { passive: true });
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    if (previousActiveEl && typeof previousActiveEl.focus === "function") {
+      previousActiveEl.focus();
+    }
+  }
+
+  openBtns.forEach((btn) => {
+    btn.addEventListener("click", () => openModal(btn));
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
 })();
 
-/* ============================================
-   IMAGE LOAD → SCROLLTRIGGER RE-REFRESH
-   Hero images (sky/treeline/cafe/foreground) are
-   large and may still be loading when the initial
-   ScrollTrigger.refresh() runs. If their real height
-   differs from what was measured, the pin distance
-   becomes stale and scroll can jump mid-parallax.
-   Refresh again once everything has fully loaded.
-   ============================================ */
-
+// ============================================
+// GLOBAL REFRESH ON WINDOW LOAD & RESIZE
+// ============================================
 window.addEventListener("load", () => {
-
   if (typeof ScrollTrigger !== "undefined") {
     ScrollTrigger.refresh();
   }
-
 });
 
-/* ============================================
-   GLOBAL RESPONSIVE REFRESH
-   ============================================ */
-
-(function () {
-
+(function handleResize() {
   let resizeTimer;
-
   window.addEventListener("resize", () => {
-
     clearTimeout(resizeTimer);
-
     resizeTimer = setTimeout(() => {
-
       if (typeof ScrollTrigger !== "undefined") {
         ScrollTrigger.refresh();
       }
-
     }, 250);
-
   });
-
-})();
-
-
-/* ============================================
-   FULL MENU LIGHTBOX MODAL
-   (There are two "Explore Menu" buttons on the
-   page — highlights section + products section —
-   so we bind every .btn-view-menu, not just one id.)
-   ============================================ */
-(function() {
-  const openBtns = document.querySelectorAll('.btn-view-menu');
-  const closeBtn = document.getElementById('closeMenuBtn');
-  const modal = document.getElementById('menuModal');
-
-  if (openBtns.length && modal && closeBtn) {
-
-    openBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop scrolling
-      });
-    });
-
-    // Close Modal on Close Button Click
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-
-    // Close Modal on Outside Click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-  }
 })();

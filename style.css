@@ -1,700 +1,685 @@
 /* ============================================
-   FOREST CAFE — DESIGN TOKENS
+   FOREST CAFE — "FC MAIN NEW" DESIGN SYSTEM
+   Vellimalai Road, Salem
    ============================================ */
+
+/* --------------------------------------------
+   FONTS
+   -------------------------------------------- */
 @font-face {
   font-family: 'Coffee Town';
-  src: url('assets/fonts/CoffeeTown.otf') format('opentype'),
-       url('assets/fonts/CoffeeTown.ttf') format('truetype');
+  src: url('assets/fonts/CoffeeTown.ttf') format('truetype'),
+    url('assets/fonts/CoffeeTown.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
-/* FOREST CAFE HERO BRAND REVEAL — font */
 @font-face {
   font-family: 'Night Rumble';
-  src: url('assets/fonts/NightRumble-X3eP9.otf') format('opentype'),
-       url('assets/fonts/NightRumble-gx5G1.ttf') format('truetype');
+  src: url('assets/fonts/NightRumble-gx5G1.ttf') format('truetype'),
+    url('assets/fonts/NightRumble-X3eP9.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
-/* ============================================
-   GLOBAL RESPONSIVE FOUNDATION
-   DO NOT PUT SECTION-SPECIFIC STYLES HERE
-   ============================================ */
+/* --------------------------------------------
+   DESIGN TOKENS & CSS VARIABLES
+   -------------------------------------------- */
+:root {
+  /* Brand Palettes */
+  --bg-forest: #1e251e;
+  /* Primary forest green */
+  --bg-forest-deep: #131a13;
+  --bg-forest-light: #2c382c;
+  --forest-gradient: linear-gradient(160deg, #1e251e 0%, #162016 50%, #111811 100%);
 
+  /* Sand / Kraft Paper Palette */
+  --bg-kraft: #d8c3a5;
+  /* Authentic kraft paper */
+  --bg-kraft-light: #ebdcc6;
+  --bg-kraft-card: #f2e6d6;
+  --bg-kraft-dark: #b89b72;
+  --kraft-gradient: linear-gradient(145deg, #ebdcc6 0%, #d8c3a5 50%, #c4ab8a 100%);
+  --kraft-dark-gradient: linear-gradient(145deg, #3d2b20 0%, #2c1d15 100%);
+
+  /* Coffee & Warm Earth Palette (Soil-to-Sip & Menu Canvas) */
+  --color-dark-brown: #1c1410;
+  /* Sticky nav & footer dark-brown */
+  --color-espresso: #2a1b14;
+  --color-soil-brown: #2e2219;
+  /* Rich warm brown for Soil-to-Sip */
+  --color-roast: #382519;
+  --color-coffee-accent: #67422f;
+
+  /* Gold Accents & Highlights (NO Heavy Halos) */
+  --text-gold: #d4a373;
+  --text-gold-light: #e9ce9e;
+  --text-gold-bright: #f5dfbe;
+
+  /* Cream & Text */
+  --warm-cream: #fdf8f0;
+  --warm-cream-soft: #f4ece1;
+  --cream-muted: #b9aa95;
+  --cream-dim: rgba(253, 248, 240, 0.85);
+
+  /* Typography */
+  --display: 'Coffee Town', 'Playfair Display', serif;
+  --body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Motion */
+  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------
+   BASE & RESET
+   -------------------------------------------- */
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-
-/* Prevent horizontal overflow
-   without affecting vertical scrolling */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-
-  overflow-x: clip;
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-dark-brown);
+  color: var(--warm-cream);
+  overflow-x: hidden;
 }
-
-body {
-  position: relative;
-}
-
-
-/* Keep media inside its parent */
-img,
-video,
-canvas,
-svg {
-  max-width: 100%;
-}
-
-
-/* Images behave predictably */
-img {
-  display: block;
-}
-
-
-/* Every section stays inside viewport */
-section,
-header,
-main,
-footer {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
-
-/* Flex/Grid children are allowed to shrink */
-section > *,
-main > *,
-.wrap,
-.sts-wrap {
-  min-width: 0;
-}
-
-
-/* Prevent long text from creating horizontal overflow */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a {
-  overflow-wrap: break-word;
-}
-
-
-/* Form/media elements should not exceed parent */
-input,
-textarea,
-button,
-select {
-  max-width: 100%;
-}
-
-
-/* ============================================
-   MOBILE BASE
-   ============================================ */
-
-@media (max-width: 768px) {
-
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  section {
-    width: 100%;
-    max-width: 100%;
-  }
-
-}
-
-
-/* ============================================
-   SMALL MOBILE
-   ============================================ */
-
-@media (max-width: 480px) {
-
-  section {
-    width: 100%;
-    max-width: 100%;
-  }
-
-}
-
-:root {
-  /* Coffee world */
-  --deep-coffee: #211713;
-  --roasted-brown: #4A3022;
-  --coffee-gold: #9E6812;
-  --warm-cream: #F5E8D0;
-  --muted-cream: #B9AA95;
-
-  --display: 'Coffee Town', serif;
-  --body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-
-  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--body);
-  background: var(--deep-coffee);
+  background-color: var(--color-soil-brown);
   color: var(--warm-cream);
   overflow-x: hidden;
   font-weight: 400;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-img { display: block; max-width: 100%; }
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
 
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Global Typography Utilities (Clean & Crisp, NO Black Boxes) */
 .eyebrow {
+  display: inline-block;
   font-size: 0.72rem;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  opacity: 0.65;
+  color: var(--text-gold-light);
   font-weight: 600;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  text-shadow: none !important;
 }
 
 .display {
   font-family: var(--display);
   font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-shadow: none !important;
 }
 
 /* ============================================
-   LOADING SCREEN (WHITE THEME FOR VIDEO)
+   BOTANICAL LEAF PATTERNS (Used in Forest Sections)
    ============================================ */
-#loader {
+.leaf-pattern-bg {
+  position: relative;
+  background-color: var(--bg-forest);
+  background-image:
+    radial-gradient(circle at 15% 30%, rgba(44, 57, 44, 0.45) 0%, transparent 60%),
+    radial-gradient(circle at 85% 70%, rgba(30, 42, 30, 0.6) 0%, transparent 65%);
+}
+
+.botanical-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='%23e9ce9e' fill-rule='evenodd'%3E%3Cpath d='M30,20 C35,10 50,8 60,18 C70,28 65,45 50,50 C40,53 25,48 20,38 C15,28 25,25 30,20 Z M28,24 C32,28 40,32 52,30' stroke='%23e9ce9e' stroke-width='1.2' fill='none'/%3E%3Cpath d='M120,90 C125,80 142,78 150,88 C158,98 152,115 140,120 C130,124 116,118 112,108 C108,98 116,94 120,90 Z' stroke='%23e9ce9e' stroke-width='1.2' fill='none'/%3E%3Ccircle cx='80' cy='80' r='3' fill='%23d4a373'/%3E%3Ccircle cx='86' cy='85' r='2.5' fill='%23d4a373'/%3E%3Cpath d='M82,82 Q95,70 110,75' stroke='%23d4a373' stroke-width='1' fill='none'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: screen;
+}
+
+/* ============================================
+   TORN PAPER SCROLL / EDGE TEXTURES
+   ============================================ */
+.paper-tear-top,
+.paper-tear-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.paper-tear-top {
+  top: 0;
+  transform: translateY(-98%);
+}
+
+.paper-tear-bottom {
+  bottom: 0;
+  transform: translateY(98%);
+}
+
+.paper-tear-svg {
+  display: block;
+  width: 100%;
+  height: 38px;
+  filter: none !important;
+}
+
+.tear-fill-sand {
+  fill: var(--bg-kraft);
+}
+
+.tear-fill-forest {
+  fill: var(--bg-forest);
+}
+
+.tear-fill-kraft {
+  fill: #ebdcc6;
+}
+
+.tear-fill-coffee {
+  fill: var(--color-soil-brown);
+}
+
+.tear-fill-darkbrown {
+  fill: var(--color-dark-brown);
+}
+
+/* ============================================
+   SAND / KRAFT PAPER CARDS (.kraft-card-bg)
+   ============================================ */
+.kraft-card-bg {
+  position: relative;
+  background: var(--kraft-gradient);
+  background-color: var(--bg-kraft);
+  color: var(--color-espresso);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 248, 235, 0.6);
+  box-shadow:
+    0 18px 42px rgba(22, 14, 10, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(135, 105, 75, 0.2);
+  overflow: hidden;
+}
+
+.kraft-card-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(100, 70, 45, 0.08) 1px, transparent 0);
+  background-size: 8px 8px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ============================================
+   PRELOADER SCREEN ("BREWING THE EXPERIENCE")
+   ============================================ */
+/* ============================================
+   PRELOADER SCREEN ("BREWING THE EXPERIENCE")
+   ============================================ */
+.loader-screen {
   position: fixed;
   inset: 0;
-  background: #ffffff;
-  z-index: 9999;
+  background: var(--color-dark-brown);
+  z-index: 99999;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.8rem;
-  transition: opacity 0.8s var(--ease-organic), visibility 0.8s;
+  padding: 2rem;
+  transition: opacity 0.8s var(--ease-organic), visibility 0.8s var(--ease-organic);
 }
-#loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.loader-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content-box {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  max-width: 440px;
+  width: 100%;
+}
+
+.loader-video-container {
+  position: relative;
+  width: min(88vw, 380px);
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 163, 115, 0.35);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  background: #000;
+}
 
 .loader-video {
-  width: min(90vw, 420px);
-  height: auto;
-  border-radius: 12px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.loader-progress-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .loader-text {
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #4A3022;
+  color: var(--text-gold-light);
   font-weight: 600;
+  text-shadow: none !important;
 }
 
-.grinder-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
-.grinder-svg { width: 92px; height: 92px; }
 .fill-track {
-  width: 160px; height: 3px;
-  background: rgba(245,232,208,0.15);
-  border-radius: 3px;
+  width: min(85vw, 280px);
+  height: 5px;
+  background: rgba(245, 232, 208, 0.15);
+  border-radius: 10px;
   overflow: hidden;
+  border: 1px solid rgba(212, 163, 115, 0.25);
 }
+
 .fill-bar {
-  height: 100%; width: 0%;
-  background: linear-gradient(90deg, var(--coffee-gold), var(--warm-cream));
-  border-radius: 3px;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #d4a373, #f5dfbe);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(212, 163, 115, 0.7);
+  transition: width 0.15s ease-out;
 }
 
 /* ============================================
-   NAVIGATION
+   STICKY NAVIGATION & HEADER BAR (#1c1410)
    ============================================ */
-nav {
+.site-header {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 500;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(28, 20, 16, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212, 163, 115, 0.22);
+  box-shadow: 0 8px 24px rgba(10, 6, 4, 0.35);
+  transition: padding 0.35s var(--ease-organic), background 0.35s var(--ease-organic);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.1rem clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.6rem clamp(1.5rem, 5vw, 4rem);
-  transition: background 0.5s var(--ease-organic), padding 0.4s var(--ease-organic), backdrop-filter 0.5s;
 }
-nav.scrolled {
-  background: rgba(33, 23, 19, 0.82);
-  backdrop-filter: blur(10px);
-  padding: 1rem clamp(1.5rem, 5vw, 4rem);
-  border-bottom: 1px solid rgba(245, 232, 208, 0.08);
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
 }
+
+.nav-brand-icon {
+  width: 32px;
+  height: auto;
+  filter: brightness(1.2);
+}
+
 .nav-word {
   font-family: var(--display);
-  font-size: 1.15rem;
-  letter-spacing: 0.05em;
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+  letter-spacing: 0.12em;
   color: var(--warm-cream);
-  text-decoration: none;
+  font-weight: 700;
+  text-shadow: none !important;
+  transition: color 0.3s ease;
 }
+
+.nav-brand:hover .nav-word {
+  color: var(--text-gold-bright);
+}
+
 .nav-links {
   display: flex;
-  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: center;
+  gap: clamp(1.2rem, 2.8vw, 2.5rem);
   list-style: none;
 }
-.nav-links a {
-  position: relative;
-  color: var(--warm-cream);
-  text-decoration: none;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+
+.nav-link {
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  opacity: 0.75;
+  color: var(--warm-cream);
+  opacity: 0.9;
+  font-weight: 600;
+  padding: 6px 0;
+  position: relative;
   transition: opacity 0.3s, color 0.3s;
-  padding-bottom: 4px;
 }
-.nav-links a::after {
+
+.nav-link::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 0%;
   height: 2px;
-  background: #d4a373;
-  transition: width 0.3s ease;
+  background: var(--text-gold);
+  transition: width 0.3s var(--ease-organic);
 }
-.nav-links a:hover,
-.nav-links a:focus-visible,
-.nav-links a.active {
+
+.nav-link:hover,
+.nav-link.active {
   opacity: 1;
-  color: #ffffff;
+  color: var(--text-gold-light);
 }
-.nav-links a.active::after,
-.nav-links a:hover::after {
+
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
-@media (max-width: 700px) { .nav-links { display: none; } }
 
-/* ============================================
-   SECTION SCAFFOLDING
-   ============================================ */
-section { position: relative; }
+.nav-cta-btn {
+  background: linear-gradient(135deg, #67422f 0%, #8d5a40 100%);
+  border: 1px solid rgba(233, 206, 158, 0.45);
+  color: #ffffff;
+  padding: 0.55rem 1.4rem;
+  border-radius: 25px;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(28, 20, 16, 0.4);
+  transition: all 0.3s var(--ease-organic);
+}
 
-.world-coffee { background: var(--deep-coffee); color: var(--warm-cream); }
-
-.wrap {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+.nav-cta-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(233, 206, 158, 0.85);
+  box-shadow: 0 8px 20px rgba(28, 20, 16, 0.6);
 }
 
 /* ============================================
-   HERO PARALLAX SECTION
-   Desktop = 4 Layer Parallax
-   Mobile  = Single Mobile Hero Image
+   HERO SECTION (FULL-WIDTH 100%, UNCLIPPED, NO PILLARS)
    ============================================ */
-
-.hero-container {
+.hero-container,
+#hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 680px;
+  min-height: 100vh;
+  height: max(100vh, 56.28vw);
   overflow: hidden;
-
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-/* ============================================
-   HERO BACKGROUND WRAPPER
-   ============================================ */
-
-.hero-bg-wrapper {
+.hero-bg-wrapper,
+.hero-layers {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
-
   overflow: hidden;
   z-index: 1;
 }
 
-
-/* ============================================
-   DESKTOP — PARALLAX LAYERS
-   ============================================ */
-
-.hero-parallax-layer {
+.hero-parallax-layer,
+.layer-lamp,
+.layer-house,
+.layer-leaves,
+.layer-roof {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-
+  overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-
   pointer-events: none;
   will-change: transform;
 }
-
-.hero-parallax-layer img {
-  width: 100%;
-  height: 100%;
-  max-width: none;
-
-  object-fit: cover;
-  object-position: bottom center;
-
-  display: block;
-  will-change: transform;
-}
-
-
-/* ============================================
-   LAYER ORDER
-   ============================================ */
 
 .hero-layer-sky {
   z-index: 1;
 }
 
-.hero-layer-treeline {
+.hero-layer-treeline,
+.layer-leaves {
   z-index: 2;
 }
 
-.hero-layer-cafe {
+.hero-layer-cafe,
+.layer-house,
+.layer-roof {
   z-index: 3;
 }
 
-.hero-layer-foreground {
+.hero-layer-foreground,
+.layer-lamp {
   z-index: 4;
 }
 
-
-/* ============================================
-   INDIVIDUAL LAYER ADJUSTMENTS
-   ============================================ */
-
-.hero-layer-treeline img,
-.hero-layer-cafe img {
+.hero-layer-sky img {
   width: 100%;
   height: 100%;
-  min-height: 125vh;
-
   object-fit: cover;
-  object-position: bottom center;
+  object-position: top center;
+  display: block;
+}
 
-  transform-origin: bottom center;
+/* PNG overlay layers: natural width, auto height, anchored to bottom-center */
+.hero-layer-treeline img,
+.hero-layer-cafe img,
+.hero-layer-foreground img,
+.layer-lamp img,
+.layer-house img,
+.layer-leaves img,
+.layer-roof img {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  will-change: transform;
 }
 
 
-/* Cafe layer */
-.hero-layer-cafe img {
-  object-position: bottom center;
-  transform-origin: bottom center;
-}
-
-
-/* Foreground layer */
-.hero-layer-foreground img {
-  object-position: bottom center;
-  transform-origin: bottom center;
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 15%,
-      black 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 15%,
-      black 100%
-    );
-}
-
-
-/* ============================================
-   MOBILE IMAGE
-   Hidden on desktop
-   ============================================ */
 
 .hero-mobile-image {
   display: none;
-
   position: absolute;
   inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  z-index: 1;
-  overflow: hidden;
+  z-index: 3;
 }
 
 .hero-mobile-image img {
   width: 100%;
   height: 100%;
-
-  max-width: none;
-
   object-fit: cover;
-  object-position: center center;
-
-  display: block;
 }
-
-
-/* ============================================
-   HERO OVERLAY
-   ============================================ */
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-
   z-index: 5;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(0, 0, 0, 0.10) 0%,
-      rgba(20, 15, 10, 0.65) 100%
-    );
-
+  background: linear-gradient(180deg, rgba(20, 14, 10, 0.25) 0%, transparent 40%, rgba(20, 14, 10, 0.45) 100%);
   pointer-events: none;
 }
 
+/* Hide center title overlay banner ("SIP THE NATURE") so cafe aesthetic & roof view remain uncluttered */
+.hero-content {
+  display: none !important;
+}
 
-/* ============================================
-   FOREST CAFE HERO BRAND REVEAL
-   Logo + wordmark, floating inside the empty
-   sky area. Independent of .hero-content.
-   ============================================ */
-
+/* HERO BRAND REVEAL */
 .hero-brand-reveal {
   position: absolute;
-
-  top: clamp(18%, 24vh, 30%);   /* was 6%,11vh,15% — now centered lower */
+  top: 25%;
   left: 50%;
-
-  z-index: 7;
-
+  z-index: 12;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  gap: clamp(0.5rem, 1.8vh, 1.1rem);
-
   text-align: center;
   pointer-events: none;
-
-  will-change: transform, opacity;
 }
 
-.hero-brand-logo {
-  width: clamp(70px, 8vw, 140px);   /* back to previous size */
-  height: auto;
-
-  display: block;
-
-  filter:
-    drop-shadow(0 0 30px rgba(255, 214, 150, 0.35))
-    drop-shadow(0 12px 26px rgba(0, 0, 0, 0.45));
-
-  will-change: transform, opacity;
-}
-
-.hero-brand-text {
-  position: relative;
-
-  font-family: 'Night Rumble', 'Coffee Town', serif;
-  font-weight: 400;
-
-  font-size: clamp(2.4rem, 5.2vw, 4.4rem);   /* back to previous size */
-  letter-spacing: 0.14em;
-
-  line-height: 1;
-
-  background: linear-gradient(180deg, #FFF6E4 0%, #E9CE9E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-
-  text-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
-
-  padding-bottom: clamp(0.5rem, 1.4vh, 0.9rem);
-
-  will-change: transform, opacity;
-}
-
-.hero-brand-text::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: clamp(40px, 6vw, 70px);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #E9CE9E, transparent);
-  opacity: 0.8;
-}
-
-/* FOREST CAFE HERO BRAND REVEAL — wind streaks */
 .hero-brand-wind {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  width: clamp(280px, 34vw, 520px);
+  width: clamp(300px, 40vw, 550px);
   height: auto;
-
   z-index: -1;
-  overflow: visible;
-
-  pointer-events: none;
 }
 
 .wind-line {
   fill: none;
-  stroke: rgba(255, 224, 178, 0.55);
-  stroke-width: 1.4;
+  stroke: rgba(245, 223, 190, 0.5);
+  stroke-width: 1.5;
   stroke-linecap: round;
-  stroke-dasharray: 4 16;
+  stroke-dasharray: 4 18;
 }
 
-/* Respect reduced motion — floating handled in JS,
-   but guard here in case of no-JS / CSS fallback */
-@media (prefers-reduced-motion: reduce) {
-
-  .hero-brand-reveal,
-  .hero-brand-logo,
-  .hero-brand-text {
-    animation: none !important;
-    transition: none !important;
-  }
-
+.hero-brand-logo {
+  width: clamp(65px, 9vw, 95px);
+  height: auto;
+  margin-bottom: 0.6rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
 }
 
+.hero-brand-text {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  letter-spacing: 0.14em;
+  color: var(--warm-cream);
+  font-weight: 700;
+  text-shadow: none !important;
+  /* NO dark squared halo */
+}
 
-/* ============================================
-   HERO CONTENT
-   ============================================ */
+.hero-brand-tagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: var(--text-gold-light);
+  margin-top: 0.4rem;
+  font-weight: 600;
+  text-shadow: none !important;
+}
 
+/* HERO CONTENT HEADLINE */
 .hero-content {
   position: relative;
-
   z-index: 10;
-
   text-align: center;
-
-  color: #ffffff;
-
-  padding: 1rem;
+  padding: 1.5rem;
+  margin-top: 18vh;
 }
 
 .hero-title {
-  font-size: clamp(3.5rem, 9vw, 7rem);
-
-  font-weight: 900;
-
-  letter-spacing: 0.12em;
-
-  background:
-    linear-gradient(
-      180deg,
-      #FFFFFF 0%,
-      rgba(255, 255, 255, 0.7) 100%
-    );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5);
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: #ffffff;
+  text-shadow: none !important;
+  /* Clean, bright text */
 }
 
 .hero-subtitle {
-  margin-top: 0.4rem;
-
-  font-size: 1.1rem;
-
-  letter-spacing: 0.25em;
-
+  margin-top: 1rem;
+  font-size: clamp(0.78rem, 1.4vw, 1.05rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-
-  color: #E2D4C9;
-
-  opacity: 0.9;
+  color: var(--text-gold-light);
+  text-shadow: none !important;
 }
 
-
-/* ============================================
-   FLOATING COMPONENT CARDS
-   ============================================ */
-
+/* FLOATING FEATURE BADGES */
 .hero-card {
   position: absolute;
-
   z-index: 20;
-
   display: flex;
   align-items: center;
-
-  gap: 1rem;
-
-  background: rgba(255, 255, 255, 0.15);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-
-  padding: 1rem 1.5rem;
-
-  border-radius: 16px;
-
+  gap: 1.2rem;
+  background: rgba(28, 20, 16, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 163, 115, 0.4);
+  padding: 1.1rem 1.8rem;
+  border-radius: 22px;
   color: #fff;
+  box-shadow: 0 16px 36px rgba(10, 6, 4, 0.5);
+  transition: transform 0.4s var(--ease-organic), border-color 0.4s ease, box-shadow 0.4s ease;
+}
 
-  opacity: 0;
+.hero-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(233, 206, 158, 0.8);
+  box-shadow: 0 22px 46px rgba(10, 6, 4, 0.65);
 }
 
 .card-left {
-  left: 8%;
-  bottom: 25%;
-
-  transform: translateX(-80px);
+  left: clamp(20px, 6vw, 90px);
+  bottom: 22%;
 }
 
 .card-right {
-  right: 8%;
+  right: clamp(20px, 6vw, 90px);
   bottom: 18%;
-
-  transform: translateX(80px);
 }
 
 .card-icon {
@@ -702,652 +687,400 @@ section { position: relative; }
 }
 
 .card-text h4 {
-  margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-gold-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
 }
 
 .card-text p {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.8;
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+  line-height: 1.4;
 }
 
-
-/* ============================================
-   MOBILE — SINGLE IMAGE
-   ============================================ */
-
-@media (max-width: 768px) {
-
-  .hero-container {
-    height: 100svh;
-    min-height: 580px;
-  }
-
-
-  /* Hide all 4 desktop layers */
-
-  .hero-parallax-layer {
-    display: none;
-  }
-
-
-  /* Show mobile image */
-
-  .hero-mobile-image {
-    display: block;
-  }
-
-
-  /* Mobile image positioning */
-
-  .hero-mobile-image img {
-    object-position: center center;
-  }
-
-
-  /* Mobile overlay */
-
-  .hero-overlay {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(15, 10, 7, 0.12) 0%,
-        rgba(15, 10, 7, 0.55) 100%
-      );
-  }
-
-
-  /* Mobile content */
-
-  .hero-content {
-    width: 100%;
-    padding: 1.5rem;
-  }
-
-
-  .hero-title {
-    font-size: clamp(2.4rem, 12vw, 4rem);
-
-    letter-spacing: 0.08em;
-
-    line-height: 1;
-  }
-
-
-  .hero-subtitle {
-    margin-top: 0.8rem;
-
-    font-size: 0.68rem;
-
-    letter-spacing: 0.16em;
-
-    line-height: 1.6;
-  }
-
-
-  /* Hide floating cards on mobile */
-
-  .hero-card {
-    display: none;
-  }
-
-
-  /* FOREST CAFE HERO BRAND REVEAL — mobile */
-
-  .hero-brand-reveal {
-  top: clamp(14%, 17vh, 20%);
-  gap: 0.6rem;
-}
-
-.hero-brand-logo {
-  width: clamp(46px, 15vw, 70px);
-}
-
-.hero-brand-text {
-  font-size: clamp(1.5rem, 8vw, 2.1rem);
-  letter-spacing: 0.1em;
-}
-
-}
-
-
-/* ============================================
-   SMALL PHONES
-   ============================================ */
-
-@media (max-width: 420px) {
-
-  .hero-container {
-    min-height: 560px;
-  }
-
-  .hero-title {
-    font-size: 2.3rem;
-  }
-
-  .hero-subtitle {
-    font-size: 0.62rem;
-    letter-spacing: 0.13em;
-  }
-
-  .hero-brand-logo {
-    width: clamp(34px, 12vw, 50px);
-  }
-
-  .hero-brand-text {
-    font-size: 1.2rem;
-  }
-
+.hero-tear {
+  bottom: -1px;
 }
 
 /* ============================================
-   SOIL TO SIP — ONE CONTINUOUS SECTION
-   (background + journey cards + cafe ambience)
+   1. SOIL TO SIP — PINNED JOURNEY SECTION (#soil-to-sip)
+   WARM RICH BROWN CANVAS (#2e2219), NO GREEN SPLIT
+   CRISP TYPOGRAPHY, NO BLACK BOXES OR TEXT SHADOWS
    ============================================ */
-
 .soil-journey-section {
   position: relative;
   width: 100%;
-  min-height: 650px;
+  min-height: 100vh;
   overflow: hidden;
-
-  background: #4a2a18;
+  background: var(--color-soil-brown) url('assets/bg/bg1.png') center top / cover no-repeat;
+  padding: 6rem 0 5rem;
+  margin-bottom: 0;
+  border-bottom: none;
+  box-shadow: none;
+  outline: none;
 }
-
-
-/* --------------------------------------------
-   BACKGROUND TEXTURE
-   -------------------------------------------- */
 
 .soil-journey-bg {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
-
-  object-fit: cover;
-  object-position: center 50%;
-
-  z-index: 0;
-}
-
-
-
-/* ============================================
-   JOURNEY CARDS — COMPACT POSITION, RIGHT-LEANING
-   (left side kept empty for future text/content)
-   ============================================ */
-
-.journey-cards {
-  position: relative;
-  z-index: 2;
-
-  width: calc(100% - 400px);
-
-  margin-left: 150px;
-  margin-top: 420px;
-
-  display: flex;
-  align-items: flex-end;
-
-  gap: 18px;
-
-  padding: 20px 30px;
-}
-
-
-/* ============================================
-   CARDS — MIXED PORTRAIT (9:16) / LANDSCAPE (16:9)
-   Alternating by position for a handcrafted,
-   editorial montage feel instead of a flat grid.
-   ============================================ */
-
-.journey-card {
-  position: relative;
-
-  overflow: hidden;
-
-  border-radius: 16px;
-
-  background: rgba(92, 58, 35, 0.85);
-
-  border: 1px solid rgba(255, 230, 190, 0.35);
-
-  box-shadow:
-    0 9px 0 rgba(35, 20, 10, 0.32),
-    0 15px 25px rgba(20, 10, 5, 0.35),
-    inset 0 1px 0 rgba(255, 245, 220, 0.22);
-
-  transform:
-    perspective(900px)
-    rotateX(2deg);
-
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-}
-
-/* Portrait 9:16 */
-.journey-card:nth-child(odd) {
-  width: 100px;
-  height: 140px;
-  flex: 0 0 100px;
-}
-
-/* Landscape 16:9 */
-.journey-card:nth-child(even) {
-  width: 180px;
-  height: 140px;
-  flex: 0 0 150px;
-}
-
-
-/* --------------------------------------------
-   IMAGE (single authoritative rule)
-   -------------------------------------------- */
-
-.journey-card img {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
   object-fit: cover;
   object-position: center;
-
-  transform: scale(1.02);
-
-  transition: transform 0.5s ease;
+  z-index: 0;
+  opacity: 0.95;
 }
-
 
 /* --------------------------------------------
-   HOVER — SMALL 3D MOVEMENT
+   3. TYPOGRAPHY & TEXT CLEANUP: NO BLACK HALOS OR BOXES
    -------------------------------------------- */
-
-.journey-card:hover {
-  transform:
-    perspective(900px)
-    translateY(-10px)
-    rotateX(4deg)
-    rotateY(-3deg);
-
-  box-shadow:
-    0 18px 0 rgba(35, 20, 10, 0.35),
-    0 28px 45px rgba(20, 10, 5, 0.48),
-    inset 0 1px 0 rgba(255, 245, 220, 0.3);
+.ambience-caption {
+  position: absolute;
+  top: 70px;
+  left: clamp(24px, 4.5vw, 64px);
+  z-index: 5;
 }
-
-
-.journey-card:hover img {
-  transform: scale(1.08);
-}
-
-
-/* ============================================
-   LEFT-SIDE CAPTIONS — "OUR JOURNEY" / "OUR CAFE
-   AMBIENCE". Sit in the reserved empty gap on the
-   left of the journey-cards row and the cafe
-   ambience row (see the margin-left / left values
-   on those tracks below). Word-reveal on scroll is
-   handled by [data-reveal-text] in script.js; the
-   slow float keeps them gently alive even once
-   revealed, instead of just sitting still.
-   ============================================ */
 
 .soil-caption,
-.ambience-caption {
+.our-roots {
   position: absolute;
-  left: clamp(24px, 4vw, 56px);
-  z-index: 2;
-  color: var(--warm-cream);
-  pointer-events: none;
-  animation: captionFloat 6.5s ease-in-out infinite;
+  top: 310px;
+  left: clamp(24px, 4.5vw, 64px);
+  z-index: 5;
 }
 
-.soil-caption .eyebrow,
-.ambience-caption .eyebrow {
+.ambience-eyebrow,
+.our-roots-label {
   display: block;
-  color: #d4a373;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-gold-light);
+  font-weight: 600;
   margin-bottom: 0.5rem;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 
+.ambience-caption h3,
 .soil-caption h3,
-.ambience-caption h3 {
+.our-journey {
   font-family: var(--display);
-  font-weight: 400;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
   line-height: 1.12;
   color: var(--warm-cream);
-  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+  text-shadow: none !important;
+  /* Crisp, clean, legible text */
+  -webkit-text-stroke: 0 !important;
 }
 
-/* Journey caption — aligned with the journey-cards row
-   (which starts at margin-top: 420px) */
-.soil-caption {
-  top: 438px;
-  width: 130px;
-}
-
-.soil-caption h3 {
-  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-}
-
-/* Ambience caption — aligned with the cafe-ambience
-   band (top: -20px, height: 320px) */
-.ambience-caption {
-  top: 70px;
-  width: 300px;
-}
-
-.ambience-caption h3 {
-  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
-}
-
-@keyframes captionFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-9px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .soil-caption,
-  .ambience-caption {
-    animation: none;
-  }
-}
-
-/* Mobile: the reserved gap disappears (cards go full-width),
-   so the captions become simple centered headings above each
-   scrollable row instead of an absolute overlay. */
-@media (max-width: 768px) {
-
-  .soil-caption,
-  .ambience-caption {
-    position: static;
-    width: 100%;
-    text-align: center;
-    padding: 0 24px;
-    animation: none;
-  }
-
-  .ambience-caption {
-    margin-top: 32px;
-  }
-
-  .soil-caption {
-    margin-top: 4px;
-  }
-
-  .soil-caption h3,
-  .ambience-caption h3 {
-    font-size: clamp(1.3rem, 6vw, 1.7rem);
-  }
-}
-
-
-
-/* ============================================
-   CAFE AMBIENCE — MOVING CARDS
-   Sits directly below the journey cards, inside
-   the same Soil to Sip section. Desktop moves
-   horizontally on its own, automatically (see
-   initCafeAmbience in script.js); mobile falls
-   back to a plain horizontally-scrollable row.
-
-   The outer ".cafe-ambience-viewport" is the
-   fixed, non-moving frame: it starts exactly
-   where the reserved left text space ends, clips
-   anything beyond it, and fades cards out with a
-   mask as they approach that left edge — so the
-   moving cards never visually sit on top of the
-   text that will go on the left.
-
-   The inner ".cafe-ambience-cards" is the track
-   GSAP actually animates (translateX).
-   ============================================ */
-
+/* --------------------------------------------
+   CAFE AMBIENCE ROW (Left-to-Right Drift)
+   -------------------------------------------- */
 .cafe-ambience-viewport {
   position: absolute;
-
-  left: 360px;
+  top: 36px;
+  left: clamp(260px, 24vw, 340px);
   right: 0;
-
-  top: -20px;
-
-  height: 320px;
-
-  z-index: 3;
-
+  height: 220px;
+  z-index: 4;
   overflow: hidden;
-
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    rgba(0, 0, 0, 0.4) 60px,
-    #000 130px,
-    #000 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    rgba(0, 0, 0, 0.4) 60px,
-    #000 130px,
-    #000 100%
-  );
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 90px, #000 calc(100% - 60px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 90px, #000 calc(100% - 60px), transparent 100%);
 }
 
 .cafe-ambience-cards {
-  position: relative;
-
   display: flex;
-  align-items: flex-end;
-
+  align-items: center;
+  gap: 20px;
   height: 100%;
-
-  gap: 22px;
-
   width: max-content;
-
   will-change: transform;
 }
 
-
-/* --------------------------------------------
-   CAFE CARD — bigger than journey cards,
-   same mixed portrait / landscape treatment
-   -------------------------------------------- */
-
 .cafe-card {
   overflow: hidden;
-
-  border-radius: 18px;
-
-  background: #e5d5b9;
-
-  border: 1px solid rgba(255, 240, 215, 0.3);
-
-  box-shadow:
-    0 8px 0 rgba(45, 25, 12, 0.25),
-    0 16px 30px rgba(25, 12, 5, 0.32),
-    inset 0 1px 0 rgba(255, 245, 225, 0.25);
-
-  transform:
-    perspective(900px)
-    rotateX(2deg);
-
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 163, 115, 0.25);
+  box-shadow: 0 8px 20px rgba(10, 8, 6, 0.25);
+  transition: transform 0.4s var(--ease-organic), border-color 0.4s ease;
+  background: #1c1410;
 }
 
-/* Portrait 9:16 */
 .cafe-card:nth-child(odd) {
-  width: 180px;
-  height: 180px;
-  flex: 0 0 180px;
+  width: 170px;
+  height: 170px;
+  flex: 0 0 170px;
 }
 
-/* Landscape 16:9 */
 .cafe-card:nth-child(even) {
-  width: 320px;
-  height: 180px;
-  flex: 0 0 320px;
+  width: 300px;
+  height: 170px;
+  flex: 0 0 300px;
 }
-
 
 .cafe-card img {
-  display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
-  object-position: center;
-
-  transition: transform 0.5s ease;
+  transition: transform 0.6s var(--ease-organic);
 }
-
 
 .cafe-card:hover {
-  transform:
-    perspective(900px)
-    translateY(-8px)
-    rotateX(4deg)
-    rotateY(-2deg);
-
-  box-shadow:
-    0 12px 0 rgba(45, 25, 12, 0.25),
-    0 24px 40px rgba(25, 12, 5, 0.4);
+  transform: translateY(-6px);
+  border-color: rgba(233, 206, 158, 0.8);
 }
-
 
 .cafe-card:hover img {
-  transform: scale(1.06);
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------
+   2. MOTION PATH & CLEAN STEP NODES
+   Positioned smoothly ABOVE card margins
+   Synchronized inside .journey-track-wrapper
+   -------------------------------------------- */
+.journey-track-wrapper {
+  position: absolute;
+  top: 235px;
+  left: clamp(240px, 20vw, 300px);
+  width: 1180px;
+  z-index: 6;
+  will-change: transform;
+}
+
+.journey-motion-container {
+  position: relative;
+  width: 1160px;
+  height: 60px;
+  margin-bottom: 28px;
+  z-index: 10;
+  pointer-events: none;
+  overflow: visible !important;
+}
+
+.journey-motion-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+}
+
+.journey-guide-path {
+  filter: drop-shadow(0 0 4px rgba(212, 163, 115, 0.5));
+}
+
+/* Clean Step Node Icons Along the Path */
+.step-node-icon {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: auto;
+  z-index: 10;
+  transition: transform 0.3s var(--ease-organic);
+}
+
+.step-node-icon:hover {
+  transform: scale(1.1);
+}
+
+.step-node-svg {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
+}
+
+.step-node-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-gold-light);
+  white-space: nowrap;
+  text-shadow: none !important;
+}
+
+/* Terminal Destination Coffee Cup: Pure Inline SVG, z-index: 20, overflow: visible */
+.terminal-cup-node {
+  position: absolute;
+  z-index: 20 !important;
+  overflow: visible !important;
+  cursor: pointer;
+}
+
+.terminal-cup-node.active .terminal-cup-svg {
+  filter: drop-shadow(0 0 14px rgba(212, 163, 115, 0.8));
+}
+
+.terminal-cup-svg {
+  width: 54px;
+  height: 46px;
+  overflow: visible !important;
+}
+
+.cup-node-label {
+  color: var(--text-gold-bright) !important;
+  font-weight: 800;
+}
+
+/* Animated Coffee Bean Particle */
+.journey-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  margin-left: -16px;
+  pointer-events: none;
+  z-index: 25;
+  will-change: transform;
+}
+
+.bean-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.particle-sparkle {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 223, 190, 0.8) 0%, transparent 70%);
+  animation: beanPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes beanPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+/* --------------------------------------------
+   OUR ROOTS / OUR JOURNEY HORIZONTAL CARDS
+   -------------------------------------------- */
+.journey-cards {
+  position: relative;
+  z-index: 6;
+  margin-top: 0;
+  margin-left: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.journey-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 10px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.4s var(--ease-organic), box-shadow 0.4s var(--ease-organic);
+  will-change: transform, opacity;
+}
+
+.journey-card:nth-child(odd) {
+  width: 110px;
+  flex: 0 0 110px;
+}
+
+.journey-card:nth-child(even) {
+  width: 150px;
+  flex: 0 0 150px;
+}
+
+.journey-img-frame {
+  width: 100%;
+  height: 125px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.journey-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-organic);
+}
+
+.journey-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 44px rgba(16, 10, 6, 0.45);
+}
+
+.journey-card:hover .journey-img-frame img {
+  transform: scale(1.08);
+}
+
+.card-badge {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--color-espresso);
+  opacity: 0.85;
+}
+
+.card-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  color: var(--color-espresso);
+  text-transform: uppercase;
 }
 
 
-/* ============================================
-   MOBILE — SOIL TO SIP / JOURNEY / CAFE AMBIENCE
-   Both card rows become simple horizontally
-   scrollable strips of a plain, uniform size;
-   no GSAP horizontal movement (see script.js
-   matchMedia gate), no mask, no page overflow.
-   ============================================ */
-
-@media (max-width: 768px) {
-
-  .soil-journey-section {
-    min-height: auto;
-    padding-bottom: 40px;
-  }
-
-  .journey-cards {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 90px;
-
-    align-items: center;
-
-    overflow-x: auto;
-    justify-content: flex-start;
-
-    gap: 16px;
-
-    padding: 30px 24px;
-
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .journey-cards::-webkit-scrollbar {
-    display: none;
-  }
-
-  .journey-card,
-  .journey-card:nth-child(odd),
-  .journey-card:nth-child(even) {
-    width: 120px;
-    height: 120px;
-
-    flex: 0 0 120px;
-
-    border-radius: 15px;
-  }
-
-  .cafe-ambience-viewport {
-    position: relative;
-    left: 0;
-    right: auto;
-    top: auto;
-
-    width: 100%;
-    height: auto;
-
-    margin-top: 24px;
-    padding: 0 24px 30px;
-
-    overflow-x: auto;
-    overflow-y: visible;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .cafe-ambience-viewport::-webkit-scrollbar {
-    display: none;
-  }
-
-  .cafe-ambience-cards {
-    align-items: center;
-    transform: none !important;
-  }
-
-  .cafe-card,
-  .cafe-card:nth-child(odd),
-  .cafe-card:nth-child(even) {
-    width: 140px;
-    height: 140px;
-
-    flex: 0 0 140px;
-  }
-}
-
 
 /* ============================================
-   REDUCED MOTION
+   1. MENU HIGHLIGHTS SECTION (WARM CREAM #f4ebd9 CANVAS)
    ============================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .journey-card,
-  .journey-card img,
-  .cafe-card,
-  .cafe-card img {
-    transition: none !important;
-  }
-}
-
-
-
-/* ============================================
-   MENU + COFFEE PRODUCTS SECTION
-   (one continuous section, shared background)
-   ============================================ */
-
 .menu-products-section {
   position: relative;
   width: 100%;
-  background: transparent; /* #1d0801 ku badhula transparent */
-  color: var(--warm-cream);
+  background: #f4ebd9;
+  padding: 8rem 0 10rem;
   overflow: hidden;
+  margin-top: 0;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  z-index: 2;
 }
 
-/* Gradient overlay removed here on purpose — it darkened the
-   leaf background image in a way that didn't look right. */
-
+/* Soil-to-Sip (#2e2219) -> Menu Highlights (#f4ebd9) */
+.menu-products-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #2e2219 0%, #f4ebd9 100%);
+  pointer-events: none;
+  z-index: 1;
+}
 
 .menu-products-bg {
   position: absolute;
@@ -1356,112 +1089,1051 @@ section { position: relative; }
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  /*transform: translateY(-10px);*/
   z-index: 0;
-  opacity: 1;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
 }
 
 .menu-products-wrap {
   position: relative;
   z-index: 2;
-  padding: clamp(5rem, 9vw, 8rem) 0;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
 }
 
-.menu-board-wrap {
-  width: min(1300px, 92%);
-  margin: 0 auto clamp(4rem, 8vw, 6rem);
+
+
+/* F-Pattern Layout: Visual Cards LEFT, Text RIGHT */
+.menu-highlights-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 3.5rem;
+  align-items: center;
+  padding: 3.5rem clamp(2rem, 3.5vw, 3.5rem);
 }
 
-.menu-board-heading {
-  text-align: center;
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+.menu-highlights-cards-left {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  z-index: 2;
 }
 
-.menu-board-heading span {
-  display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.35em;
+.menu-highlights-text-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.eyebrow-highlights {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  opacity: 0.65;
-  margin-bottom: 0.6rem;
-  color: #d4a373;
+  color: #fff;
+  background: var(--color-coffee-accent);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.menu-board-heading h2 {
+.highlights-title {
   font-family: var(--display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 400;
-  line-height: 0.95;
-  margin: 0;
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  line-height: 1.12;
+  color: var(--color-espresso);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  text-shadow: none !important;
+}
+
+.highlights-desc {
+  font-size: 0.95rem;
+  color: #553a2a;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.btn-view-menu {
+  background: linear-gradient(135deg, #67422f 0%, #4a2a18 100%);
+  border: 1px solid rgba(212, 163, 115, 0.5);
+  color: #ffffff;
+  padding: 0.95rem 2.2rem;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(42, 27, 20, 0.35);
+  transition: all 0.35s var(--ease-organic);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn-view-menu:hover {
+  background: linear-gradient(135deg, #7e523b 0%, #5d3520 100%);
+  transform: translateY(-3px);
+  border-color: rgba(233, 206, 158, 0.85);
+  box-shadow: 0 14px 30px rgba(42, 27, 20, 0.55);
+}
+
+.highlight-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px 10px 16px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(42, 27, 20, 0.12);
+  border: 1px solid rgba(212, 163, 115, 0.3);
+  transition: transform 0.35s var(--ease-organic), box-shadow 0.35s var(--ease-organic);
+}
+
+.highlight-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(42, 27, 20, 0.22);
+}
+
+.highlight-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #f4ece1;
+}
+
+.highlight-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-organic);
+}
+
+.highlight-card:hover .highlight-img-wrap img {
+  transform: scale(1.08);
+}
+
+.highlight-card h4 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-espresso);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.highlight-card .price {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-roast);
+  background: rgba(212, 163, 115, 0.2);
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* ============================================
+   OUR CAFE PRODUCTS SECTION (FOREST GREEN #1e251e)
+   Seamless transition from brown kraft/coffee into forest green
+   ============================================ */
+.bg2-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e251e;
+  padding: 10rem 0 6rem;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+/* Menu Highlights (#f4ebd9) -> Products (#1e251e) */
+.bg2-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #f4ebd9 0%, #1e251e 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg2-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 75%;
+  z-index: 0;
+  opacity: 0.85;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 280px, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 280px, #000 100%);
+}
+
+.cafe-products-container {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.products-clay-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
+  z-index: 2;
+}
+
+.cafe-prod-card {
+  padding: 1.4rem;
+  text-align: center;
+  border-radius: 22px;
+  transition: transform 0.35s var(--ease-organic), box-shadow 0.35s var(--ease-organic);
+}
+
+.cafe-prod-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(16, 10, 6, 0.45);
+}
+
+.cafe-prod-img-wrap {
+  width: 100%;
+  height: 145px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.1rem;
+  background: #2a1b14;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cafe-prod-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-organic);
+}
+
+.cafe-prod-card:hover .cafe-prod-img-wrap img {
+  transform: scale(1.08);
+}
+
+.cafe-prod-card h4 {
+  color: var(--color-espresso);
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.cafe-prod-card .price {
+  display: inline-block;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: var(--color-coffee-accent);
+  border: 1px solid rgba(212, 163, 115, 0.6);
+  padding: 4px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(42, 27, 20, 0.3);
+}
+
+.products-text-content {
+  color: var(--warm-cream);
+  z-index: 2;
+}
+
+.products-text-content .eyebrow-text {
+  display: inline-block;
+  font-size: 0.74rem;
+  letter-spacing: 0.28em;
+  color: var(--text-gold-light);
+  background: rgba(28, 20, 16, 0.75);
+  border: 1px solid rgba(212, 163, 115, 0.4);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+
+.products-text-content h2 {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+  color: var(--warm-cream);
+  text-shadow: none !important;
+}
+
+.products-text-content p {
+  color: var(--warm-cream-soft);
+  font-size: 1.05rem;
+  opacity: 0.9;
+  line-height: 1.75;
+  margin-bottom: 2.2rem;
+}
+
+/* ============================================
+   AUTHOR / FAMILY & TRAVELERS JOURNEY SECTION
+   Continuous forest-earth tone interpolation
+   ============================================ */
+.family-journey-section {
+  position: relative;
+  width: 100%;
+  background: #161f16;
+  padding: 6.5rem 0;
+  overflow: hidden;
+  margin-top: 0;
+  border: none;
+}
+
+/* Products (#1e251e) -> Our Story (#161f16) */
+.family-journey-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #1e251e 0%, #161f16 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.family-journey-container {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 4.5rem;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+.family-journey-media {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.family-card-main {
+  padding: 1.2rem;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(10, 8, 6, 0.45);
+}
+
+.family-img-wrap {
+  width: 100%;
+  height: clamp(260px, 35vw, 380px);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #1c1410;
+}
+
+.family-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-organic);
+}
+
+.family-card-main:hover .family-img-wrap img {
+  transform: scale(1.06);
+}
+
+.family-stamp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.9rem;
+  padding: 0 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  font-weight: 800;
+  color: var(--color-espresso);
+}
+
+.family-card-sub {
+  position: absolute;
+  bottom: -35px;
+  right: -25px;
+  width: clamp(160px, 22vw, 220px);
+  padding: 8px;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  z-index: 3;
+}
+
+.family-card-sub img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.sub-caption {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 6px;
+  color: var(--color-espresso);
+  letter-spacing: 0.1em;
+}
+
+.family-journey-text {
   color: var(--warm-cream);
 }
 
-.menu-board-heading p {
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.6;
+.eyebrow-heritage {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: var(--text-gold-light);
+  background: rgba(28, 20, 16, 0.75);
+  border: 1px solid rgba(212, 163, 115, 0.4);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
 }
 
-.menu-board-image {
+.family-journey-text h2 {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.12;
+  margin-bottom: 1.4rem;
+  color: var(--warm-cream);
+  text-shadow: none !important;
+}
+
+.lead-story {
+  color: var(--warm-cream-soft);
+  font-size: 1.05rem;
+  opacity: 0.95;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.secondary-story {
+  color: var(--warm-cream-soft);
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.68;
+  margin-bottom: 2.2rem;
+}
+
+.family-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.pillar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: rgba(28, 20, 16, 0.65);
+  border: 1px solid rgba(212, 163, 115, 0.28);
+  padding: 1rem 1.4rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.pillar-item:hover {
+  transform: translateX(6px);
+  border-color: rgba(212, 163, 115, 0.65);
+}
+
+.pillar-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.pillar-item strong {
   display: block;
+  font-size: 0.92rem;
+  color: var(--text-gold-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.15rem;
+}
+
+.pillar-item p {
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+  line-height: 1.4;
+}
+
+/* ============================================
+   5. TINY COT & HILLSIDE STAY SECTION
+   Cozy resort cottage feature in Kraft container
+   ============================================ */
+.tiny-cot-section {
+  position: relative;
   width: 100%;
+  background: #2b3a3e;
+  padding: 6.5rem 0;
+  overflow: hidden;
+  margin-top: 0;
+  border: none;
 }
 
-.menu-board-image img {
+/* Our Story (#161f16) -> Stay (#2b3a3e) */
+.tiny-cot-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #161f16 0%, #2b3a3e 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tiny-cot-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+}
+
+.tiny-cot-card {
+  padding: clamp(2.5rem, 4vw, 3.8rem);
+  border-radius: 28px;
+  border: 1px solid rgba(212, 163, 115, 0.4);
+  box-shadow: 0 20px 50px rgba(10, 8, 6, 0.35);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.cot-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cot-photo-item {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 24px rgba(10, 8, 6, 0.2);
+  height: 175px;
+  background: #1c1410;
+}
+
+.cot-photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-organic);
+}
+
+.cot-photo-item:hover img {
+  transform: scale(1.08);
+}
+
+.cot-photo-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(28, 20, 16, 0.85);
+  color: var(--text-gold-light);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 3px 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.cot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eyebrow-cot {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-coffee-accent);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cot-title {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  line-height: 1.12;
+  color: var(--color-espresso);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  text-shadow: none !important;
+}
+
+.cot-desc {
+  font-size: 0.95rem;
+  color: #553a2a;
+  line-height: 1.65;
+  margin-bottom: 1.8rem;
+}
+
+.cot-features-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 18px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.cot-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--color-espresso);
+}
+
+.cot-feat strong {
   display: block;
+  font-size: 0.85rem;
+  color: var(--color-espresso);
+  margin-bottom: 2px;
+}
+
+.cot-feat p {
+  font-size: 0.74rem;
+  color: #5d4334;
+  line-height: 1.35;
+}
+
+.cot-feat-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.btn-book-stay {
+  background: linear-gradient(135deg, #67422f 0%, #4a2a18 100%);
+  border: 1px solid rgba(212, 163, 115, 0.5);
+  color: #ffffff;
+  padding: 0.95rem 2.2rem;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(42, 27, 20, 0.35);
+  transition: all 0.35s var(--ease-organic);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.btn-book-stay:hover {
+  background: linear-gradient(135deg, #7e523b 0%, #5d3520 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(42, 27, 20, 0.55);
+  color: #ffffff;
+}
+
+/* ============================================
+   6. REVIEWS SECTION (KRAFT / BOTANICAL THEME)
+   ============================================ */
+.reviews-section {
+  position: relative;
+  width: 100%;
+  background: #1a221a;
+  padding: 6.5rem 0 8rem;
+  overflow: hidden;
+  margin-top: 0;
+  border: none;
+}
+
+/* Stay (#2b3a3e) -> Reviews (#1a221a) */
+.reviews-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #2b3a3e 0%, #1a221a 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.reviews-to-footer-blend {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(24, 28, 22, 0), #1c1410);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.reviews-container {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 3.5rem;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+.reviews-summary-left {
+  padding: 3rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 24px;
+}
+
+.rating-stars-badge {
+  font-size: 1.6rem;
+  color: #a46b46;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.4rem;
+}
+
+.rating-score {
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 700;
+  color: var(--color-espresso);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.rating-count {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  font-weight: 800;
+  color: var(--color-roast);
+  margin-bottom: 1.2rem;
+}
+
+.rating-title {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  color: var(--color-espresso);
+  margin-bottom: 0.8rem;
+}
+
+.rating-sub {
+  font-size: 0.86rem;
+  color: #553a2a;
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+}
+
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  color: #fff;
+  background: var(--color-coffee-accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #73d13d;
+  box-shadow: 0 0 8px #73d13d;
+}
+
+.reviews-grid-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-card {
+  padding: 1.6rem 2rem;
+  border-radius: 22px;
+  transition: transform 0.35s var(--ease-organic), box-shadow 0.35s var(--ease-organic);
+}
+
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(16, 10, 6, 0.35);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.review-stars {
+  font-size: 1.1rem;
+  color: #a46b46;
+  letter-spacing: 0.15em;
+}
+
+.review-date {
+  font-size: 0.72rem;
+  color: #7a5a44;
+  font-weight: 600;
+}
+
+.review-quote {
+  font-size: 0.95rem;
+  color: var(--color-espresso);
+  line-height: 1.65;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-coffee-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--color-espresso);
+  line-height: 1.2;
+}
+
+.user-info span {
+  font-size: 0.72rem;
+  color: #7a5a44;
+}
+
+/* ============================================
+   SOCIAL & MAP NAVIGATION FOOTER INTEGRATION
+   ============================================ */
+.footer-social-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+  flex-wrap: wrap;
+  margin-bottom: 2.8rem;
+}
+
+.footer-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(28, 20, 16, 0.85);
+  border: 1px solid rgba(212, 163, 115, 0.35);
+  color: var(--warm-cream);
+  padding: 0.65rem 1.4rem;
+  border-radius: 25px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s var(--ease-organic);
+}
+
+.footer-action-btn .action-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--text-gold);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-action-btn:hover {
+  background: linear-gradient(135deg, #67422f 0%, #4a2a18 100%);
+  border-color: rgba(233, 206, 158, 0.8);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.footer-action-btn:hover .action-icon {
+  transform: scale(1.15);
+  color: var(--text-gold-bright);
+}
+
+/* ============================================
+   FULL MENU LIGHTBOX MODAL
+   ============================================ */
+.menu-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(14, 10, 8, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.menu-modal.active {
+  display: flex;
+}
+
+.modal-content-wrap {
+  max-width: 92vw;
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 163, 115, 0.4);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+}
+
+.modal-img {
   width: 100%;
   height: auto;
-  max-width: 100%;
-  margin: 0 auto;
-  object-fit: contain;
-  border-radius: 8px;
-  border: 1px solid rgba(245, 232, 208, 0.1);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+  display: block;
 }
 
-
-
-/* --------------------------------------------
-   RESPONSIVE
-   -------------------------------------------- */
-
-@media (max-width: 1024px) {
-  .coffee-products-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.close-modal {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  background: rgba(28, 20, 16, 0.8);
+  border: 1px solid rgba(212, 163, 115, 0.5);
+  color: #fff;
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 600px) {
-  .coffee-products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.close-modal:hover {
+  background: var(--color-coffee-accent);
+  color: var(--text-gold-bright);
+  transform: rotate(90deg) scale(1.1);
 }
 
 /* ============================================
-   FOOTER
+   FOOTER SECTION (#1c1410 Dark-Brown)
    ============================================ */
-footer {
-  background: #140d0a;
-  padding: clamp(4rem, 9vh, 6rem) 0 2.5rem;
+footer.world-coffee {
+  background-color: var(--color-dark-brown);
+  padding: clamp(5rem, 9vh, 7rem) 0 3rem;
   text-align: center;
-  border-top: 1px solid rgba(245, 232, 208, 0.08);
+  position: relative;
+  margin-top: -1px;
+  border-top: none;
 }
-footer .display { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.6rem; }
-footer .eyebrow { margin-bottom: 2.5rem; opacity: 0.5; }
-.footer-links { display: flex; justify-content: center; gap: clamp(1.2rem, 4vw, 2.5rem); flex-wrap: wrap; margin-bottom: 2.5rem; list-style: none; }
-.footer-links a { color: var(--warm-cream); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.3s; }
-.footer-links a:hover { opacity: 1; color: #d4a373; }
-.footer-fine { font-size: 0.68rem; opacity: 0.35; }
+
+.footer-brand-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-logo {
+  width: 38px;
+  height: auto;
+  filter: brightness(1.2);
+}
+
+footer .footer-brand-title {
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  color: var(--warm-cream);
+  text-shadow: none !important;
+}
+
+.footer-tagline {
+  margin-bottom: 2.8rem;
+  opacity: 0.7;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  flex-wrap: wrap;
+  margin-bottom: 2.8rem;
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--warm-cream);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--text-gold);
+}
+
+.footer-info-bar {
+  margin-bottom: 2rem;
+  padding: 0 1.5rem;
+}
+
+.footer-address {
+  font-size: 0.85rem;
+  color: var(--cream-muted);
+  line-height: 1.7;
+}
+
+.footer-fine {
+  font-size: 0.72rem;
+  color: var(--cream-muted);
+  opacity: 0.5;
+}
 
 /* ============================================
-   TEXT REVEAL (word-by-word, on scroll)
-   Applied to any element with [data-reveal-text].
-   JS (script.js: initTextReveal) splits the text
-   into words and animates each one in — gives the
-   heading its own bit of movement instead of the
-   page sitting still.
+   WORD-BY-WORD TEXT REVEAL
    ============================================ */
 .reveal-word-wrap {
   display: inline-block;
@@ -1475,383 +2147,186 @@ footer .eyebrow { margin-bottom: 2.5rem; opacity: 0.5; }
 }
 
 /* ============================================
-   UTILITY & GLASSMORPHISM
+   RESPONSIVENESS & BREAKPOINTS
    ============================================ */
-.reveal { opacity: 0; transform: translateY(28px); }
-
-.glass {
-  background: rgba(245, 232, 208, 0.07);
-  backdrop-filter: blur(14px) saturate(1.1);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
-  border: 1px solid rgba(245, 232, 208, 0.14);
-  border-radius: 16px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-}
-
-:focus-visible { outline: 2px solid var(--coffee-gold); outline-offset: 3px; }
-
-html,
-body {
-  overflow-x: hidden !important;
-}
-
-img,
-video {
-  max-width: 100%;
-}
-
-/* ============================================
-   MENU HIGHLIGHTS & SPACING ADJUSTMENTS
-   ============================================ */
-
-.menu-products-wrap {
-  padding: clamp(3rem, 5vw, 5rem) 0;
-}
-
-/* TOP HIGHLIGHTS BOARD */
-.menu-highlights-layout {
-  width: min(1100px, 90%);
-  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
-  margin-top: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2.5rem;
-  background: rgba(218, 184, 141, 0.92); /* Soft organic theme overlay */
-  backdrop-filter: blur(8px);
-  padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 230, 190, 0.2);
-}
-
-.menu-highlights-left {
-  flex: 0 0 28%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.eyebrow-highlights {
-  font-size: 0.72rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #5c4233;
-  margin-bottom: 0.6rem;
-  font-weight: 600;
-}
-
-.highlights-title {
-  font-family: var(--display);
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  line-height: 1.15;
-  color: #211713;
-  margin-bottom: 1.8rem;
-}
-
-.btn-view-menu {
-  background: #312117;
-  border: 1px solid #4a3022;
-  color: #f5e8d0;
-  padding: 0.85rem 1.6rem;
-  border-radius: 30px;
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.btn-view-menu:hover {
-  background: #9e6812;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-/* RIGHT: 5 CARDS GRID */
-.menu-highlights-right {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-}
-
-.highlight-card {
-  background: #f4ece1;
-  border-radius: 14px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.highlight-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-.highlight-img-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.highlight-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.highlight-card h4 {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #2b1d16;
-  margin-bottom: 4px;
-}
-
-.highlight-card .price {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #9e6812;
-}
-
-/* MODAL STYLES FOR MENU IMAGE */
-.menu-modal {
-  display: none; 
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(8px);
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.menu-modal.active {
-  display: flex;
-}
-
-.modal-content-wrap {
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow: auto;
-  border-radius: 12px;
-}
-
-.modal-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.close-modal {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.close-modal:hover {
-  color: #d4a373;
-}
-
-/* RESPONSIVE */
 @media (max-width: 1024px) {
   .menu-highlights-layout {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .menu-highlights-right {
-    width: 100%;
+  .menu-highlights-text-right {
+    order: -1;
+  }
+
+  .menu-highlights-cards-left {
     grid-template-columns: repeat(3, 1fr);
   }
-}
 
-@media (max-width: 600px) {
-  .menu-highlights-right {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ============================================
-   BG2 SECTION STYLES
-   ============================================ */
-.bg2-section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: var(--deep-coffee);
-}
-
-.bg2-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 80%;
-  z-index: 0;
-}
-
-.bg2-content {
-  position: relative;
-  z-index: 2;
-  width: min(1240px, 90%);
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-/* Direct override for section & wrapper background */
-.menu-products-section,
-.menu-products-wrap,
-.menu-board-wrap {
-  background: none !important;
-  background-color: transparent !important;
-}
-
-/* (No top gradient here anymore — removed per feedback, it
-   darkened the leaf bg image in a way that looked off.) */
-
-/* ============================================
-   NEW CAFE PRODUCTS CLAYMORPHISM STYLES
-   ============================================ */
-.cafe-products-container {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 3rem;
-  align-items: center;
-  width: min(1280px, 92%);
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.products-clay-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.cafe-prod-card {
-  /* Terracotta/copper — warm contrast against bg2's dark forest
-     green (roughly complementary), and picks up the same
-     terracotta family as bg1 / coffee-bg so the whole site reads
-     as one palette. */
-  background: linear-gradient(155deg, #8a5a3c 0%, #4a3022 100%);
-  border: 1px solid rgba(230, 189, 140, 0.22);
-  border-radius: 20px;
-  padding: 1.2rem;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  box-shadow: 
-    8px 8px 16px rgba(6, 12, 7, 0.6),
-    -6px -6px 12px rgba(58, 40, 26, 0.4),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.06);
-}
-
-.cafe-prod-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(230, 189, 140, 0.45);
-  box-shadow: 
-    12px 12px 20px rgba(6, 12, 7, 0.7),
-    -8px -8px 16px rgba(58, 40, 26, 0.5);
-}
-
-.cafe-prod-img-wrap {
-  width: 100%;
-  height: 120px;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 0.8rem;
-}
-
-.cafe-prod-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.cafe-prod-card h4 {
-  color: #f5e8d0;
-  font-size: 0.9rem;
-  margin-bottom: 0.3rem;
-  letter-spacing: 0.05em;
-}
-
-.cafe-prod-card .price {
-  color: #d4a373;
-  font-weight: 600;
-  font-size: 0.88rem;
-}
-
-.products-text-content {
-  color: #f5e8d0;
-}
-
-.products-text-content .eyebrow-text {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  color: #d4a373;
-  margin-bottom: 0.5rem;
-}
-
-.products-text-content h2 {
-  font-family: var(--display, sans-serif);
-  font-size: clamp(2.5rem, 4vw, 3.8rem);
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.products-text-content p {
-  opacity: 0.8;
-  line-height: 1.6;
-  margin-bottom: 1.8rem;
-}
-
-@media (max-width: 900px) {
   .cafe-products-container {
     grid-template-columns: 1fr;
+    gap: 3rem;
   }
+
   .products-text-content {
     order: -1;
     text-align: center;
   }
+
+  .family-journey-container {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .tiny-cot-card {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .reviews-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }
 
-/* 1. Remove background gradient overlay */
-#soil-to-sip,
-.soil-journey-section {
-  background: none !important;
-  background-color: transparent !important;
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .nav-word {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    gap: 0.8rem;
+  }
+
+  .nav-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+
+  .nav-cta-btn {
+    display: none;
+  }
+
+  .hero-parallax-layer {
+    display: none;
+  }
+
+  .hero-mobile-image {
+    display: block;
+  }
+
+  .hero-card {
+    display: none;
+  }
+
+  .hero-brand-reveal {
+    top: 18%;
+  }
+
+  .hero-brand-text {
+    font-size: 2.2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .soil-journey-section {
+    min-height: auto;
+    padding: 4rem 0 5rem;
+  }
+
+  .ambience-caption,
+  .soil-caption {
+    position: static;
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 1.5rem;
+  }
+
+  .cafe-ambience-viewport {
+    position: static;
+    height: auto;
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 0 20px 2rem;
+  }
+
+  .journey-cards {
+    margin-top: 2rem;
+    margin-left: 0;
+    overflow-x: auto;
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  .journey-motion-container {
+    display: none;
+  }
+
+  .menu-highlights-cards-left {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products-clay-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .family-card-sub {
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .cot-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cot-features-list {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Pseudo-element blend gradients (::before / ::after) at the
-   section's edges are left ENABLED on purpose (see the original
-   .soil-journey-section::after rule near the top of this file) —
-   they're what makes the transition into the next background
-   invisible instead of a hard cut. */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.1rem;
+  }
 
-/* 3. Reset background image filters to original natural colors */
-.soil-journey-bg,
-img.soil-journey-bg {
-  filter: none !important;
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
+  .menu-highlights-cards-left {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-social-actions {
+    flex-direction: column;
+  }
+
+  .footer-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-brand-reveal,
+  .hero-brand-logo,
+  .hero-brand-text,
+  .wind-line,
+  .teapot-steam,
+  .steam-puff,
+  .particle-sparkle {
+    animation: none !important;
+  }
 }
