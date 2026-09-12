@@ -3,868 +3,426 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forest Cafe — Vellimalai Road, Salem | Artisanal Farm-to-Cup Experience</title>
-<meta name="description" content="Experience Forest Cafe on Vellimalai Road, Salem. Handcrafted organic farm brews, artisanal coffee from soil to sip, lush natural ambiance, family journey, and bakery delights.">
+<title>Forest Cafe — Vellimalai Road, Salem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ============================================
-     PRELOADER SCREEN ("BREWING THE EXPERIENCE")
-     ============================================ -->
-<div id="loader" class="loader-screen" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading Forest Cafe">
-  <div class="loader-content-box">
-    <!-- Central Coffee Jar Card -->
-    <div class="loader-video-container">
-      <video
-        id="loader-video"
-        class="loader-video"
-        autoplay
-        muted
-        playsinline
-        preload="auto"
-      >
-        <source src="assets/loader.webm" type="video/webm">
-        <source src="assets/loader.mp4" type="video/mp4">
-      </video>
-    </div>
+<div id="loader">
 
-    <!-- Primary Smooth Fill Bar -->
-    <div class="loader-progress-section">
-      <div class="loader-text">BREWING THE EXPERIENCE</div>
-      <div class="fill-track">
-        <div class="fill-bar" id="loaderFillBar"></div>
-      </div>
-    </div>
-  </div>
+  <video
+    id="loader-video"
+    class="loader-video"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="assets/loader.webm" type="video/webm">
+    <source src="assets/loader.mp4" type="video/mp4">
+  </video>
+
+  <div class="loader-text">Brewing the experience</div>
+
 </div>
 
-<!-- ============================================
-     STICKY NAVIGATION & HEADER BAR (#1c1410)
-     ============================================ -->
-<header id="site-header" class="site-header">
-  <nav id="nav" class="nav-container" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-brand" aria-label="Forest Cafe Home">
-        <img src="assets/logo/logo.png" alt="" class="nav-brand-icon" aria-hidden="true">
-        <span class="nav-word">FOREST CAFE</span>
-      </a>
+<nav id="nav">
+  <a href="#hero" class="nav-word">Forest Cafe</a>
+  <ul class="nav-links">
+    <li><a href="#soil-to-sip">Coffee</a></li>
+    <li><a href="#menu-products">Menu</a></li>
+    <li><a href="#cafe-products">Products</a></li>
+  </ul>
+</nav>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#soil-to-sip" class="nav-link">COFFEE</a></li>
-        <li><a href="#menu-products" class="nav-link">MENU</a></li>
-        <li><a href="#cafe-products" class="nav-link">PRODUCTS</a></li>
-        <li><a href="#family-journey" class="nav-link">OUR STORY</a></li>
-        <li><a href="#tiny-cot" class="nav-link">STAY</a></li>
-        <li><a href="#reviews" class="nav-link">REVIEWS</a></li>
-      </ul>
-
-      <div class="nav-cta-wrap">
-        <a href="#menu-products" class="nav-cta-btn">ORDER FRESH</a>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<!-- ============================================
-     HERO SECTION (FULL-WIDTH 100VW, UNCLIPPED, NO PILLARS)
-     ============================================ -->
+<!-- ============ HERO ============ -->
 <section id="hero" class="hero-container">
 
-  <!-- Hero Background Parallax Layers -->
-  <div class="hero-bg-wrapper hero-layers">
+  <!-- Hero Background -->
+  <div class="hero-bg-wrapper">
 
-    <!-- DESKTOP PARALLAX LAYERS (Full Unclipped Height, 100vw Full Bleed) -->
-    <div class="hero-parallax-layer hero-layer-sky" id="hero-layer-1">
-      <img src="assets/hero/hero-01-sky.jpg" alt="Forest sky at dawn">
+    <!-- ===== DESKTOP PARALLAX LAYERS ===== -->
+
+    <!-- Layer 1: Sky -->
+    <div
+      class="hero-parallax-layer hero-layer-sky"
+      id="hero-layer-1"
+    >
+      <img
+        src="assets/hero/hero-01-sky.jpg"
+        alt="Forest sky at dawn"
+      >
     </div>
 
-    <div class="hero-parallax-layer hero-layer-treeline layer-leaves" id="hero-layer-2">
-      <img src="assets/hero/hero-02-treeline.png" alt="Palm treeline and leaves">
+    <!-- Layer 2: Trees -->
+    <div
+      class="hero-parallax-layer hero-layer-treeline"
+      id="hero-layer-2"
+    >
+      <img
+        src="assets/hero/hero-02-treeline.png"
+        alt="Palm treeline and houses"
+      >
     </div>
 
-    <div class="hero-parallax-layer hero-layer-cafe layer-house layer-roof" id="hero-layer-3">
-      <img src="assets/hero/hero-03-cafe.png" alt="Forest Cafe entrance and roofline">
+    <!-- Layer 3: Cafe -->
+    <div
+      class="hero-parallax-layer hero-layer-cafe"
+      id="hero-layer-3"
+    >
+      <img
+        src="assets/hero/hero-03-cafe.png"
+        alt="Forest Cafe entrance"
+      >
     </div>
 
-    <div class="hero-parallax-layer hero-layer-foreground layer-lamp" id="hero-layer-4">
-      <img src="assets/hero/hero-04-foreground.png" alt="Hanging lamp fixtures and cafe table">
+    <!-- Layer 4: Foreground -->
+    <div
+      class="hero-parallax-layer hero-layer-foreground"
+      id="hero-layer-4"
+    >
+      <img
+        src="assets/hero/hero-04-foreground.png"
+        alt="Hanging plants and cafe table"
+      >
     </div>
 
-    <!-- MOBILE HERO -->
+
+    <!-- ===== MOBILE HERO ===== -->
+
     <div class="hero-mobile-image">
-      <img src="assets/hero/hero-mobile.webp" alt="Forest Cafe">
+      <img
+        src="assets/hero/hero-mobile.webp"
+        alt="Forest Cafe"
+      >
     </div>
+
 
     <!-- Hero Overlay -->
     <div class="hero-overlay"></div>
+
   </div>
 
-  <!-- FOREST CAFE HERO BRAND REVEAL -->
+
+  <!-- ===== FOREST CAFE HERO BRAND REVEAL ===== -->
+
   <div class="hero-brand-reveal" id="hero-brand-reveal">
-    <svg class="hero-brand-wind" viewBox="0 0 400 160" aria-hidden="true">
-      <path class="wind-line wind-line-1" d="M20,40 Q120,20 220,45 T380,35" />
-      <path class="wind-line wind-line-2" d="M10,95 Q140,75 260,100 T390,90" />
-      <path class="wind-line wind-line-3" d="M40,135 Q160,120 280,140 T370,130" />
-    </svg>
 
-    <img src="assets/logo/logo.png" alt="Forest Cafe emblem" class="hero-brand-logo" id="hero-brand-logo">
-    <div class="hero-brand-text" id="hero-brand-text">FOREST CAFE</div>
-    <div class="hero-brand-tagline">SALEM &bull; VELLIMALAI ROAD</div>
+  <svg class="hero-brand-wind" viewBox="0 0 400 160" aria-hidden="true">
+    <path class="wind-line wind-line-1" d="M20,40 Q120,20 220,45 T380,35" />
+    <path class="wind-line wind-line-2" d="M10,95 Q140,75 260,100 T390,90" />
+    <path class="wind-line wind-line-3" d="M40,135 Q160,120 280,140 T370,130" />
+  </svg>
+
+  <img src="assets/logo/logo.png" alt="Forest Cafe emblem" class="hero-brand-logo" id="hero-brand-logo">
+  <div class="hero-brand-text" id="hero-brand-text">FOREST CAFE</div>
+
   </div>
 
-  <!-- HERO CONTENT (Hidden to preserve uncluttered view of cafe roofline and architecture) -->
-  <div class="hero-content" style="display: none;" aria-hidden="true">
-    <h1 class="hero-title" data-reveal-text aria-label="Sip Nature in Salem">
-      SIP NATURE IN SALEM
+  <!-- ===== HERO CONTENT ===== -->
+
+  <div class="hero-content">
+
+    <h1 class="hero-title">
+      
     </h1>
+
     <p class="hero-subtitle">
-      Organic Farm Fresh Roasts &bull; Forest Ambiance &bull; Pure Tranquility
+      
     </p>
+
   </div>
 
-  <!-- FLOATING FEATURE BADGES -->
+
+  <!-- ===== LEFT FEATURE CARD ===== -->
+
   <div class="hero-card card-left">
-    <span class="card-icon" aria-hidden="true">☕</span>
+
+    <span class="card-icon">☕</span>
+
     <div class="card-text">
       <h4>Fresh Brews</h4>
-      <p>Artisanal coffee brewed from fresh beans</p>
+
+      <p>
+        Artisanal coffee brewed from fresh beans
+      </p>
     </div>
+
   </div>
+
+
+  <!-- ===== RIGHT FEATURE CARD ===== -->
 
   <div class="hero-card card-right">
-    <span class="card-icon" aria-hidden="true">🌿</span>
+
+    <span class="card-icon">🌿</span>
+
     <div class="card-text">
       <h4>Organic Farm</h4>
-      <p>Relax in our cozy natural ambiance</p>
+
+      <p>
+        Relax in our cozy natural ambiance
+      </p>
     </div>
+
   </div>
 
 </section>
 
 <!-- ============================================
-     SOIL TO SIP — PINNED JOURNEY (#soil-to-sip / #farm)
-     Warm Rich Brown Canvas (#2e2219 / Kraft Texture)
-     NO Green Strip, Crisp Clean Typography
+     SOIL TO SIP — JOURNEY
      ============================================ -->
+
 <section id="soil-to-sip" class="soil-journey-section">
 
-  <!-- Background Texture -->
-  <img src="assets/bg/bg1.png" alt="" class="soil-journey-bg" aria-hidden="true">
+  <!-- Background -->
+  <img
+    src="assets/bg/bg1.png"
+    alt=""
+    class="soil-journey-bg"
+  >
 
-  <!-- CAFE AMBIENCE ROW -->
+  <!-- Cafe Ambience — caption fills the left-side gap
+       reserved before .cafe-ambience-viewport starts -->
   <div class="ambience-caption">
-    <span class="eyebrow ambience-eyebrow">INSIDE THE CAFE</span>
-    <h3 data-reveal-text aria-label="Our Cafe Ambience">OUR CAFE<br>AMBIENCE</h3>
+    <span class="eyebrow">INSIDE THE CAFE</span>
+    <h3 data-reveal-text>OUR CAFE<br>AMBIENCE</h3>
   </div>
 
+  <!-- Journey Cards — caption fills the left-side gap
+       reserved by .journey-cards' margin-left -->
+  <div class="soil-caption">
+    <span class="eyebrow">OUR ROOTS</span>
+    <h3 data-reveal-text>OUR<br>JOURNEY</h3>
+  </div>
+
+  <div class="journey-cards">
+
+    <div class="journey-card">
+      <img src="assets/journey/01-soil.jpg" alt="Soil">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/02-seed.jpg" alt="Seed">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/03-sprout.jpg" alt="Sprout">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/04-plant.jpg" alt="Plant">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/05-cherry.jpg" alt="Coffee Cherry">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/06-roast.jpg" alt="Roast">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/07-grind.jpg" alt="Grind">
+    </div>
+
+    <div class="journey-card">
+      <img src="assets/journey/08-sip.jpg" alt="Sip" loading="lazy" width="105" height="105">
+    </div>
+
+  </div>
+
+  <!-- Cafe Ambience Cards -->
   <div class="cafe-ambience-viewport">
-    <div class="cafe-ambience-cards">
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-01.jpg" alt="Cafe entrance area" loading="lazy" width="180" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-05.jpg" alt="Cafe garden seating" loading="lazy" width="320" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-06.jpg" alt="Cafe evening lighting" loading="lazy" width="180" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-11.jpg" alt="Cafe covered dining" loading="lazy" width="320" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-14.jpg" alt="Stone water bridge" loading="lazy" width="180" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-18.jpg" alt="Nature deck seating" loading="lazy" width="320" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-19.jpg" alt="Outdoor deck" loading="lazy" width="180" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-20.jpg" alt="Lush patio" loading="lazy" width="320" height="180">
-      </div>
-      <div class="cafe-card">
-        <img src="assets/cafe/cafe-22.jpg" alt="Rustic cafe corner" loading="lazy" width="180" height="180">
-      </div>
+  <div class="cafe-ambience-cards">
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-01.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
     </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-05.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-06.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-11.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-14.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-18.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-19.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-20.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
+    <div class="cafe-card">
+      <img src="assets/cafe/cafe-22.jpg" alt="Cafe ambience" loading="lazy" width="150" height="105">
+    </div>
+
   </div>
-
-  <!-- JOURNEY CAPTION (.our-roots & .our-journey) -->
-  <div class="soil-caption our-roots">
-    <span class="eyebrow our-roots-label">OUR ROOTS</span>
-    <h3 class="our-journey" data-reveal-text aria-label="Our Journey">OUR<br>JOURNEY</h3>
-  </div>
-
-  <!-- JOURNEY TRACK WRAPPER: Synchronized Cards & Motion Path -->
-  <div class="journey-track-wrapper">
-
-    <!-- SVG MOTION PATH & STEP ICONS CONTAINER
-         Runs cleanly ABOVE card margins without cutting through card images -->
-    <div class="journey-motion-container" aria-hidden="true">
-      
-      <svg class="journey-motion-svg" id="journey-motion-svg" viewBox="0 0 1160 60" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#e9ce9e" stop-opacity="0.95"/>
-            <stop offset="35%" stop-color="#d4a373" stop-opacity="0.85"/>
-            <stop offset="70%" stop-color="#c4ab8a" stop-opacity="0.9"/>
-            <stop offset="100%" stop-color="#e9ce9e" stop-opacity="1"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Smooth undulating path flowing cleanly ABOVE card margins from Left to Right -->
-        <path
-          id="journey-motion-path"
-          d="M 65,30 C 160,15 280,38 420,26 C 550,15 680,38 800,26 C 920,15 1000,34 1087,30"
-          fill="none"
-          stroke="url(#pathGradient)"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-dasharray="6 7"
-          class="journey-guide-path"
-        />
-      </svg>
-
-      <!-- STEP ICON 1: Planting (Clean Inline SVG) -->
-      <div class="step-node-icon" id="node-planting" style="left: 44px; top: 8px;">
-        <svg viewBox="0 0 42 42" class="step-node-svg">
-          <circle cx="21" cy="21" r="18" fill="#2c1d15" stroke="#d4a373" stroke-width="1.5"/>
-          <path d="M12 28 Q21 24 30 28" stroke="#d4a373" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          <path d="M21 26 L21 16 C21 12 15 11 14 14 C13 17 18 19 21 18" stroke="#e9ce9e" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-          <path d="M21 16 C21 12 27 11 28 14 C29 17 24 19 21 18" stroke="#e9ce9e" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-        </svg>
-        <span class="step-node-label">PLANTING</span>
-      </div>
-
-      <!-- STEP ICON 2: Coffee Cherries & Beans (Clean Inline SVG) -->
-      <div class="step-node-icon" id="node-beans" style="left: 628px; top: 8px;">
-        <svg viewBox="0 0 42 42" class="step-node-svg">
-          <circle cx="21" cy="21" r="18" fill="#2c1d15" stroke="#d4a373" stroke-width="1.5"/>
-          <path d="M17 13 C21 13 24 16 24 20 C24 24 21 27 17 27 C13 27 10 24 10 20 C10 16 13 13 17 13 Z" fill="#5d3b2a" stroke="#d4a373" stroke-width="1.2"/>
-          <path d="M17 14 C15 17 19 19 17 22 C15 25 18 26 17 27" stroke="#e9ce9e" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-          <path d="M26 15 C30 15 32 18 32 21 C32 25 29 28 26 28 C22 28 20 25 20 21 C20 18 22 15 26 15 Z" fill="#3d2215" stroke="#d4a373" stroke-width="1.2"/>
-          <path d="M26 16 C24 19 28 20 26 23 C24 26 27 27 26 28" stroke="#e9ce9e" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-        </svg>
-        <span class="step-node-label">HARVEST</span>
-      </div>
-
-      <!-- STEP ICON 3: Grinding Machine / Mill (Clean Inline SVG) -->
-      <div class="step-node-icon" id="node-grinder" style="left: 920px; top: 8px;">
-        <svg viewBox="0 0 42 42" class="step-node-svg">
-          <circle cx="21" cy="21" r="18" fill="#2c1d15" stroke="#d4a373" stroke-width="1.5"/>
-          <path d="M15 21 L27 21 L25 29 L17 29 Z" fill="#5d3b2a" stroke="#d4a373" stroke-width="1.2"/>
-          <path d="M17 16 L25 16 L27 21 L15 21 Z" fill="#8d5a40" stroke="#d4a373" stroke-width="1.2"/>
-          <path d="M21 16 L21 10 L26 8" stroke="#e9ce9e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          <circle cx="27" cy="8" r="1.5" fill="#d4a373"/>
-          <line x1="14" y1="29" x2="28" y2="29" stroke="#d4a373" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <span class="step-node-label">GRINDING</span>
-      </div>
-
-      <!-- STEP ICON 4: Terminal Coffee Cup (Clean Inline SVG, z-index: 20, overflow: visible) -->
-      <div class="step-node-icon terminal-cup-node" id="terminal-cup" style="left: 1060px; top: 2px;">
-        <svg viewBox="0 0 54 46" class="terminal-cup-svg">
-          <!-- Saucer -->
-          <ellipse cx="27" cy="40" rx="21" ry="4" fill="#1c1410" stroke="#d4a373" stroke-width="1.4" />
-          <!-- Cup Body -->
-          <path d="M13 17 C13 31 18 36 27 36 C36 36 41 31 41 17 Z" fill="#2c1a14" stroke="#d4a373" stroke-width="1.6" />
-          <!-- Cup Rim -->
-          <ellipse cx="27" cy="17" rx="14" ry="4" fill="#67422f" stroke="#d4a373" stroke-width="1.5" />
-          <!-- Crema Swirl -->
-          <ellipse class="cup-crema" cx="27" cy="17" rx="11" ry="2.8" fill="#a46b46" />
-          <ellipse class="cup-core" cx="27" cy="17" rx="7" ry="1.8" fill="#e9ce9e" opacity="0.9" />
-          <!-- Handle -->
-          <path d="M40 21 C47 21 47 30 39 31" stroke="#d4a373" stroke-width="1.8" stroke-linecap="round" fill="none" />
-          <!-- Rising Steam Lines -->
-          <path class="steam-line steam-1" d="M23,13 C21,8 25,5 23,1" stroke="#e9ce9e" stroke-width="1.2" stroke-linecap="round" fill="none" />
-          <path class="steam-line steam-2" d="M28,12 C26,7 30,4 28,1" stroke="#e9ce9e" stroke-width="1.2" stroke-linecap="round" fill="none" />
-          <path class="steam-line steam-3" d="M33,13 C31,8 35,5 33,1" stroke="#e9ce9e" stroke-width="1.2" stroke-linecap="round" fill="none" />
-        </svg>
-        <span class="step-node-label cup-node-label">FRESH SIP</span>
-      </div>
-
-      <!-- Animated Coffee Bean Particle (Travels Left-to-Right along the path) -->
-      <div id="coffee-bean" class="journey-particle" aria-hidden="true">
-        <svg class="bean-svg" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="14" fill="#d4a373" opacity="0.3" filter="blur(4px)" />
-          <path d="M16 4 C23 4 28 9 28 16 C28 23 23 28 16 28 C9 28 4 23 4 16 C4 9 9 4 16 4 Z" fill="#4a2a18" stroke="#d4a373" stroke-width="1.8"/>
-          <path d="M16 5 C13 10 19 14 16 19 C13 23 18 26 16 27" stroke="#e9ce9e" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <div class="particle-sparkle"></div>
-      </div>
-
-    </div>
-
-    <!-- JOURNEY CARDS (OUR ROOTS / OUR JOURNEY) -->
-    <div class="journey-cards">
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">01</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/01-soil.jpg" alt="Soil" loading="lazy" width="100" height="140">
-        </div>
-        <span class="card-label">SOIL</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">02</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/02-seed.jpg" alt="Seed" loading="lazy" width="180" height="140">
-        </div>
-        <span class="card-label">SEED</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">03</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/03-sprout.jpg" alt="Sprout" loading="lazy" width="100" height="140">
-        </div>
-        <span class="card-label">SPROUT</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">04</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/04-plant.jpg" alt="Plant" loading="lazy" width="180" height="140">
-        </div>
-        <span class="card-label">PLANT</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">05</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/05-cherry.jpg" alt="Coffee Cherry" loading="lazy" width="100" height="140">
-        </div>
-        <span class="card-label">CHERRY</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">06</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/06-roast.jpg" alt="Roast" loading="lazy" width="180" height="140">
-        </div>
-        <span class="card-label">ROAST</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">07</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/07-grind.jpg" alt="Grind" loading="lazy" width="100" height="140">
-        </div>
-        <span class="card-label">GRIND</span>
-      </div>
-
-      <div class="journey-card kraft-card-bg">
-        <div class="card-badge">08</div>
-        <div class="journey-img-frame">
-          <img src="assets/journey/08-sip.jpg" alt="Sip" loading="lazy" width="180" height="140">
-        </div>
-        <span class="card-label">SIP</span>
-      </div>
-
-    </div>
-
   </div>
 
 </section>
 
-<!-- ============================================
-     MENU HIGHLIGHTS SECTION (SEAMLESS WARM BROWN CANVAS)
-     F-Pattern Layout: Visual Cards LEFT, Text RIGHT
-     Seamless transition from #soil-to-sip without green bar
-     ============================================ -->
+
+
 <section id="menu-products" class="menu-products-section">
 
-  <!-- Background Image -->
-  <img src="assets/bg/coffee-bg.png" alt="" class="menu-products-bg" aria-hidden="true">
+  <!-- Background -->
+  <img src="assets/bg/coffee-bg.png" alt="" class="menu-products-bg">
 
   <div class="menu-products-wrap">
 
-    <!-- MENU HIGHLIGHTS KRAFT CONTAINER ("MADE WITH LOVE, SERVED WITH CARE") -->
-    <div class="menu-highlights-layout kraft-card-bg">
-      
-      <!-- LEFT: Visual 5 Cards Grid (Natural Reading Flow Anchor) -->
-      <div class="menu-highlights-cards-left">
-        
-        <div class="highlight-card">
-          <div class="highlight-img-wrap">
-            <img src="assets/menu/menu-03.jpg" alt="Coconut Latte" loading="lazy" width="120" height="120">
-          </div>
-          <h4>COCONUT LATTE</h4>
-          <span class="price">₹180</span>
-        </div>
-
-        <div class="highlight-card">
-          <div class="highlight-img-wrap">
-            <img src="assets/menu/menu-04.jpg" alt="Forest Cappuccino" loading="lazy" width="120" height="120">
-          </div>
-          <h4>FOREST CAPPUCCINO</h4>
-          <span class="price">₹160</span>
-        </div>
-
-        <div class="highlight-card">
-          <div class="highlight-img-wrap">
-            <img src="assets/menu/menu-05.jpg" alt="Chocolate Mocha" loading="lazy" width="120" height="120">
-          </div>
-          <h4>CHOCOLATE MOCHA</h4>
-          <span class="price">₹190</span>
-        </div>
-
-        <div class="highlight-card">
-          <div class="highlight-img-wrap">
-            <img src="assets/menu/menu-07.jpg" alt="Banana Cake" loading="lazy" width="120" height="120">
-          </div>
-          <h4>BANANA CAKE</h4>
-          <span class="price">₹120</span>
-        </div>
-
-        <div class="highlight-card">
-          <div class="highlight-img-wrap">
-            <img src="assets/menu/menu-10.jpg" alt="Cinnamon Roll" loading="lazy" width="120" height="120">
-          </div>
-          <h4>CINNAMON ROLL</h4>
-          <span class="price">₹150</span>
-        </div>
-
-      </div>
-
-      <!-- RIGHT: Explanatory Content (F-Pattern Reading Flow) -->
-      <div class="menu-highlights-text-right">
+    <!-- 1. TOP: MENU HIGHLIGHTS SECTION -->
+    <div class="menu-highlights-layout">
+      <!-- Left Column -->
+      <div class="menu-highlights-left">
         <span class="eyebrow-highlights">MENU HIGHLIGHTS</span>
-        <h2 class="highlights-title" data-reveal-text aria-label="Made with love, served with care">
-          MADE WITH LOVE,<br>SERVED WITH CARE
-        </h2>
-        <p class="highlights-desc">
-          Slow-roasted Salem hill beans paired with house-baked confectionery. Crafted with fresh organic ingredients from our soil.
-        </p>
+        <h2 class="highlights-title" data-reveal-text>MADE WITH LOVE,<br>SERVED WITH CARE</h2>
         <button type="button" class="btn-view-menu" id="openMenuBtn">
-          <span>EXPLORE MENU</span> &rarr;
+          EXPLORE MENU &rarr;
         </button>
       </div>
 
+      <!-- Right Column: 5 Cards Grid -->
+      <div class="menu-highlights-right">
+        <div class="highlight-card">
+          <div class="highlight-img-wrap"><img src="assets/menu/menu-03.jpg" alt="Coconut Latte"></div>
+          <h4>COCONUT LATTE</h4>
+          <span class="price">₹180</span>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-img-wrap"><img src="assets/menu/menu-04.jpg" alt="Forest Cappuccino"></div>
+          <h4>FOREST CAPPUCCINO</h4>
+          <span class="price">₹160</span>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-img-wrap"><img src="assets/menu/menu-05.jpg" alt="Chocolate Mocha"></div>
+          <h4>CHOCOLATE MOCHA</h4>
+          <span class="price">₹190</span>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-img-wrap"><img src="assets/menu/menu-07.jpg" alt="Banana Cake"></div>
+          <h4>BANANA CAKE</h4>
+          <span class="price">₹120</span>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-img-wrap"><img src="assets/menu/menu-10.jpg" alt="Cinnamon Roll"></div>
+          <h4>CINNAMON ROLL</h4>
+          <span class="price">₹150</span>
+        </div>
+      </div>
     </div>
 
   </div>
 
-
-
 </section>
 
 <!-- ============================================
-     OUR CAFE PRODUCTS SECTION (DEEP FOREST GREEN #1e251e)
-     F-Pattern Layout: Visual Cards LEFT, Text RIGHT
+     PRODUCTS SECTION (COFFEE BG)
      ============================================ -->
-<section id="cafe-products" class="bg2-section leaf-pattern-bg">
-
-  <!-- Background Image -->
-  <img src="assets/bg/bg2.png" alt="" class="bg2-img" aria-hidden="true">
-
-  <!-- Botanical Leaf Pattern Overlay -->
-  <div class="botanical-overlay" aria-hidden="true"></div>
+<section id="cafe-products-section" class="bg2-section">
+  <img src="assets/bg/bg2.png" alt="" class="bg2-img">
 
   <div class="menu-products-wrap">
 
-    <div class="cafe-products-container">
+    <!-- OUR CAFE PRODUCTS (CLAYMORPHISM SECTION) -->
+    <div class="cafe-products-container" id="cafe-products">
       
-      <!-- Left Side: 4 Product Cards in Rounded Kraft Cards -->
+      <!-- Left Side: 4 Product Cards Grid -->
       <div class="products-clay-grid">
-        
-        <div class="cafe-prod-card kraft-card-bg">
+        <div class="cafe-prod-card">
           <div class="cafe-prod-img-wrap">
-            <img src="assets/cafeproduct/menu-08.jpg" alt="Pure Coffee Powder" loading="lazy" width="180" height="120">
+            <img src="assets/cafeproduct/menu-08.jpg" alt="Pure Coffee Powder">
           </div>
           <h4>PURE COFFEE POWDER</h4>
           <span class="price">₹180</span>
         </div>
 
-        <div class="cafe-prod-card kraft-card-bg">
+        <div class="cafe-prod-card">
           <div class="cafe-prod-img-wrap">
-            <img src="assets/cafeproduct/menu-08.jpg" alt="80/20 Blend" loading="lazy" width="180" height="120">
+            <img src="assets/cafeproduct/menu-08.jpg" alt="80/20 Blend">
           </div>
           <h4>80/20 BLEND</h4>
           <span class="price">₹160</span>
         </div>
 
-        <div class="cafe-prod-card kraft-card-bg">
+        <div class="cafe-prod-card">
           <div class="cafe-prod-img-wrap">
-            <img src="assets/cafeproduct/menu-08.jpg" alt="70/30 Blend" loading="lazy" width="180" height="120">
+            <img src="assets/cafeproduct/menu-08.jpg" alt="70/30 Blend">
           </div>
           <h4>70/30 BLEND</h4>
           <span class="price">₹150</span>
         </div>
 
-        <div class="cafe-prod-card kraft-card-bg">
+        <div class="cafe-prod-card">
           <div class="cafe-prod-img-wrap">
-            <img src="assets/cafeproduct/menu-08.jpg" alt="Pirandai Thokku" loading="lazy" width="180" height="120">
+            <img src="assets/cafeproduct/menu-08.jpg" alt="Pirandai Thokku">
           </div>
           <h4>PIRANDAI THOKKU</h4>
           <span class="price">₹120</span>
         </div>
-
       </div>
 
-      <!-- Right Side: Content (F-Pattern Reading Flow) -->
+      <!-- Right Side: Content -->
       <div class="products-text-content">
         <span class="eyebrow-text">FROM OUR FARM</span>
-        <h2 data-reveal-text aria-label="Our Cafe Products">OUR CAFE PRODUCTS</h2>
-        <p>
-          Organic farm-fresh retail packages and handcrafted coffee blends created close to the earth on Salem hills. Take home the taste of Vellimalai.
-        </p>
+        <h2 data-reveal-text>OUR CAFE PRODUCTS</h2>
+        <p>Organic farm-fresh products and handcrafted coffee blends made close to the earth.</p>
         <button type="button" class="btn-view-menu" id="openMenuBtn2">
-          <span>EXPLORE MENU</span> &rarr;
+          EXPLORE MENU &rarr;
         </button>
       </div>
 
     </div>
 
   </div>
-
 </section>
 
-<!-- ============================================
-     4. AUTHOR / FAMILY & TRAVELERS JOURNEY SECTION
-     ============================================ -->
-<section id="family-journey" class="family-journey-section leaf-pattern-bg">
-
-  <!-- Botanical Leaf Pattern Overlay -->
-  <div class="botanical-overlay" aria-hidden="true"></div>
-
-  <div class="family-journey-container">
-    
-    <!-- LEFT: Visual Collage & Roots Anchor -->
-    <div class="family-journey-media">
-      <div class="family-card-main kraft-card-bg">
-        <div class="family-img-wrap">
-          <img src="assets/cafe/cafe-18.jpg" alt="Forest Cafe Family Seating and Courtyard" loading="lazy">
-        </div>
-        <div class="family-stamp">
-          <span class="stamp-year">EST. VELLIMALAI</span>
-          <span class="stamp-heart">♥ SALEM HILLS</span>
-        </div>
-      </div>
-
-      <!-- Inset secondary handcrafted preview -->
-      <div class="family-card-sub kraft-card-bg">
-        <img src="assets/cafe/cafe-06.jpg" alt="Warm evening lantern glow at Forest Cafe" loading="lazy">
-        <div class="sub-caption">Warm Lanterns &bull; Hillside Calm</div>
-      </div>
-    </div>
-
-    <!-- RIGHT: Explanatory Typography (F-Pattern Flow) -->
-    <div class="family-journey-text">
-      <span class="eyebrow-heritage">OUR HERITAGE &amp; HEART</span>
-      <h2 data-reveal-text aria-label="A Haven for Families &amp; Travelers">
-        A HAVEN FOR FAMILIES &amp;<br>WEARY TRAVELERS
-      </h2>
-      <p class="lead-story">
-        Nestled along the quiet climbing curves of Vellimalai Road, Forest Cafe was created as an escape from city rush. A family dream woven into the green slopes of Salem.
-      </p>
-      <p class="secondary-story">
-        Whether you are taking a break during a road trip, gathering with family over slow-dripped artisanal roasts, or watching the mist settle through the palms, you are treated like one of our own. Every bean is grown with respect, every cup poured with love.
-      </p>
-      
-      <div class="family-pillars">
-        <div class="pillar-item">
-          <span class="pillar-icon">🌱</span>
-          <div>
-            <strong>Eco-Rooted</strong>
-            <p>Sustainable shade farming &amp; native flora preservation</p>
-          </div>
-        </div>
-        <div class="pillar-item">
-          <span class="pillar-icon">☕</span>
-          <div>
-            <strong>100% Single-Origin</strong>
-            <p>Hand-sorted coffee cherries roasted on the hills</p>
-          </div>
-        </div>
-        <div class="pillar-item">
-          <span class="pillar-icon">🏡</span>
-          <div>
-            <strong>Warm Welcome</strong>
-            <p>A serene stop for families, pets &amp; solo backpackers</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ============================================
-     5. TINY COT & HILLSIDE RETREAT SECTION
-     Authentic Eco-Cottage Stay on Salem Hills
-     ============================================ -->
-<section id="tiny-cot" class="tiny-cot-section leaf-pattern-bg">
-
-  <!-- Botanical Leaf Pattern Overlay -->
-  <div class="botanical-overlay" aria-hidden="true"></div>
-
-  <div class="tiny-cot-wrap">
-    
-    <div class="tiny-cot-card kraft-card-bg">
-      
-      <!-- LEFT: Photo Showcase Grid (Real Resort Photos) -->
-      <div class="cot-gallery-grid">
-        <div class="cot-photo-item">
-          <img src="assets/resort/resort-front.jpg" alt="Tiny Cot wooden cottage front view" loading="lazy" width="300" height="175">
-          <span class="cot-photo-tag">WOODEN COTTAGES</span>
-        </div>
-        <div class="cot-photo-item">
-          <img src="assets/resort/resort-room.jpg" alt="Cozy cottage bedroom interior" loading="lazy" width="300" height="175">
-          <span class="cot-photo-tag">COZY BEDROOM</span>
-        </div>
-        <div class="cot-photo-item">
-          <img src="assets/resort/resort-steps.jpg" alt="Stone garden steps and nature pathway" loading="lazy" width="300" height="175">
-          <span class="cot-photo-tag">STONE GARDEN STEPS</span>
-        </div>
-        <div class="cot-photo-item">
-          <img src="assets/resort/resort-lounge.jpg" alt="Veranda sit-out and panoramic hill view" loading="lazy" width="300" height="175">
-          <span class="cot-photo-tag">TEA VERANDA</span>
-        </div>
-      </div>
-
-      <!-- RIGHT: Hillside Stay Story & Features -->
-      <div class="cot-content">
-        <span class="eyebrow-cot">HILLSIDE RETREAT &bull; ECO-STAY</span>
-        <h2 class="cot-title" data-reveal-text aria-label="Tiny Cot Hillside Stay">
-          TINY COT &amp;<br>HILLSIDE STAY
-        </h2>
-        <p class="cot-desc">
-          Wake up enveloped by morning valley mist and the gentle fragrance of coffee blossoms. Our handcrafted hillside wooden cottages offer a peaceful sanctuary far above the city din.
-        </p>
-
-        <!-- Feature List Grid -->
-        <div class="cot-features-list">
-          <div class="cot-feat">
-            <span class="cot-feat-icon" aria-hidden="true">🏡</span>
-            <div>
-              <strong>Private Cedar Huts</strong>
-              <p>Secluded wooden rooms with forest views</p>
-            </div>
-          </div>
-          <div class="cot-feat">
-            <span class="cot-feat-icon" aria-hidden="true">☕</span>
-            <div>
-              <strong>Dawn Brew Delivery</strong>
-              <p>Fresh farm-to-cup roasts at your veranda</p>
-            </div>
-          </div>
-          <div class="cot-feat">
-            <span class="cot-feat-icon" aria-hidden="true">🌄</span>
-            <div>
-              <strong>Misty Valley Decks</strong>
-              <p>Panoramic sunrises over Salem peaks</p>
-            </div>
-          </div>
-          <div class="cot-feat">
-            <span class="cot-feat-icon" aria-hidden="true">🔥</span>
-            <div>
-              <strong>Bonfire &amp; Stargazing</strong>
-              <p>Quiet mountain nights under clear skies</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Booking CTA -->
-        <div class="cot-action-wrap">
-          <a href="https://wa.me/?text=Hello%20Forest%20Cafe%2C%20I%20would%20like%20to%20inquire%20about%20booking%20the%20Tiny%20Cot%20%2F%20Hillside%20Stay." target="_blank" rel="noopener" class="btn-book-stay" aria-label="Inquire about Tiny Cot stay on WhatsApp">
-            <span>RESERVE YOUR STAY</span> &rarr;
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ============================================
-     6. REVIEWS SECTION (KRAFT / BOTANICAL THEME)
-     ============================================ -->
-<section id="reviews" class="reviews-section leaf-pattern-bg">
-
-  <!-- Botanical Leaf Pattern Overlay -->
-  <div class="botanical-overlay" aria-hidden="true"></div>
-
-  <div class="reviews-container">
-    
-    <!-- LEFT: Overall Rating Badge & Anchor -->
-    <div class="reviews-summary-left kraft-card-bg">
-      <div class="rating-stars-badge">★★★★★</div>
-      <div class="rating-score">4.9</div>
-      <div class="rating-count">1,200+ REVIEWS</div>
-      <h3 class="rating-title">LOVED BY TRAVELERS</h3>
-      <p class="rating-sub">
-        Salem’s highest-rated hillside cafe retreat. Praised for organic coffee roasts, warm hospitality, and lush forest quietude.
-      </p>
-      <div class="verified-badge">
-        <span class="badge-dot"></span> 100% VERIFIED GUESTS
-      </div>
-    </div>
-
-    <!-- RIGHT: Reviews Cards Grid (F-Pattern Flow) -->
-    <div class="reviews-grid-right">
-
-      <div class="review-card kraft-card-bg">
-        <div class="review-header">
-          <div class="review-stars">★★★★★</div>
-          <span class="review-date">2 days ago</span>
-        </div>
-        <p class="review-quote">
-          “The most peaceful stop on our Salem–Yercaud journey. The Coconut Latte and warm Banana Cake were out of this world. Our children loved roaming the garden!”
-        </p>
-        <div class="review-user">
-          <div class="user-avatar">PR</div>
-          <div class="user-info">
-            <strong>Priya &amp; Anand R.</strong>
-            <span>Family Travelers &bull; Chennai</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card kraft-card-bg">
-        <div class="review-header">
-          <div class="review-stars">★★★★★</div>
-          <span class="review-date">1 week ago</span>
-        </div>
-        <p class="review-quote">
-          “Real single-origin flavor! You can taste the genuine care from soil to sip. We bought two pouches of the 80/20 blend for home. Incredible ambience.”
-        </p>
-        <div class="review-user">
-          <div class="user-avatar">VS</div>
-          <div class="user-info">
-            <strong>Vikramaditya S.</strong>
-            <span>Coffee Connoisseur &bull; Bangalore</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card kraft-card-bg">
-        <div class="review-header">
-          <div class="review-stars">★★★★★</div>
-          <span class="review-date">3 weeks ago</span>
-        </div>
-        <p class="review-quote">
-          “A breath of fresh hillside air. Handcrafted interiors, misty morning breeze, and the soothing sound of the stone fountain. Simply unforgettable.”
-        </p>
-        <div class="review-user">
-          <div class="user-avatar">MK</div>
-          <div class="user-info">
-            <strong>Dr. Malini Karthik</strong>
-            <span>Local Guide &bull; Salem</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- Seamless Gradient Transition into Dark-Brown Footer (NO HARSH TEARS) -->
-  <div class="reviews-to-footer-blend" aria-hidden="true"></div>
-
-</section>
-
-<!-- ============================================
-     FULL MENU LIGHTBOX MODAL
-     ============================================ -->
-<div id="menuModal" class="menu-modal" role="dialog" aria-modal="true" aria-label="Forest Cafe Full Menu" tabindex="-1">
-  <button type="button" class="close-modal" id="closeMenuBtn" aria-label="Close full menu modal">&times;</button>
+<!-- FULL MENU LIGHTBOX MODAL -->
+<div id="menuModal" class="menu-modal">
+  <span class="close-modal" id="closeMenuBtn">&times;</span>
   <div class="modal-content-wrap">
     <picture>
       <source media="(max-width: 768px)" srcset="assets/menu/menu-01.png">
-      <img src="assets/menu/menu-landscape.png" alt="Forest Cafe Full Menu" class="modal-img" width="1200" height="700">
+      <img src="assets/menu/menu-landscape.png" alt="Forest Cafe Full Menu" class="modal-img">
     </picture>
   </div>
 </div>
 
-<!-- ============================================
-     FOOTER SECTION (#1c1410 Dark-Brown)
-     With Social & Direct Map Navigation Integration
-     ============================================ -->
 <footer class="world-coffee">
   <div class="wrap">
-    
-    <div class="footer-brand-wrap">
-      <img src="assets/logo/logo.png" alt="" class="footer-logo" aria-hidden="true">
-      <h2 class="display footer-brand-title">Forest Cafe</h2>
-    </div>
-    
-    <div class="eyebrow footer-tagline">Coffee &bull; Land &bull; Stories &bull; Vellimalai Road</div>
-
-    <!-- SOCIAL & MAP NAVIGATION ACTION BUTTONS -->
-    <div class="footer-social-actions" aria-label="Social and Location links">
-      <!-- Google Maps -->
-      <a href="https://maps.google.com/?q=Forest+Cafe+Vellimalai+Road+Salem" target="_blank" rel="noopener" class="footer-action-btn btn-maps" aria-label="Open Forest Cafe location on Google Maps">
-        <svg class="action-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-        </svg>
-        <span>Google Maps</span>
-      </a>
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/?text=Hello%20Forest%20Cafe%20Salem%2C%20I%20would%20like%20to%20know%20more%20about%20your%20brews%20and%20table%20bookings." target="_blank" rel="noopener" class="footer-action-btn btn-whatsapp" aria-label="Chat with Forest Cafe on WhatsApp">
-        <svg class="action-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.25.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-1.01-1.35-1.01-2.58 0-1.23.65-1.84.88-2.09.23-.25.5-.32.67-.32.17 0 .34 0 .49.01.15.01.36-.06.56.43.21.49.71 1.74.77 1.87.06.13.1.28.02.45-.08.17-.12.28-.24.42-.12.14-.26.32-.37.43-.12.12-.25.25-.11.49.14.24.63 1.04 1.36 1.68.94.83 1.73 1.09 1.97 1.21.24.12.39.11.53-.06.15-.17.63-.73.8-1 .17-.26.35-.22.58-.13zM12 2a10 10 0 0 0-8.66 15L2 22l5.17-1.34A10 10 0 1 0 12 2z"/>
-        </svg>
-        <span>WhatsApp</span>
-      </a>
-
-      <!-- Instagram -->
-      <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-action-btn btn-instagram" aria-label="Follow Forest Cafe on Instagram">
-        <svg class="action-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-        <span>Instagram</span>
-      </a>
-
-      <!-- Facebook -->
-      <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-action-btn btn-facebook" aria-label="Visit Forest Cafe on Facebook">
-        <svg class="action-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-        </svg>
-        <span>Facebook</span>
-      </a>
-    </div>
-
+    <h2 class="display">Forest Cafe</h2>
+    <div class="eyebrow">Coffee. Land. Stories.</div>
     <ul class="footer-links">
       <li><a href="#hero">Back to Top</a></li>
       <li><a href="#soil-to-sip">Our Coffee</a></li>
       <li><a href="#menu-products">Menu</a></li>
       <li><a href="#cafe-products">Products</a></li>
-      <li><a href="#family-journey">Our Story</a></li>
-      <li><a href="#tiny-cot">Hillside Stay</a></li>
-      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="https://maps.google.com" target="_blank" rel="noopener">Salem &bull; Vellimalai Road</a></li>
     </ul>
-
-    <div class="footer-info-bar">
-      <p class="footer-address">
-        <strong>Forest Cafe &amp; Organic Roasters</strong><br>
-        Vellimalai Road, Salem, Tamil Nadu &bull; Open Daily 7:00 AM – 10:30 PM
-      </p>
-    </div>
-
-    <p class="footer-fine">
-      &copy; 2026 Forest Cafe &middot; Handcrafted with care on Vellimalai Road, Salem &middot; All Rights Reserved
-    </p>
+    <p class="footer-fine">Forest Cafe &middot; Handcrafted with care on Vellimalai Road, Salem &middot; All Rights Reserved</p>
   </div>
 </footer>
 
-<!-- ============================================
-     SCRIPTS (GSAP + SCROLLTRIGGER + MOTIONPATH)
-     ============================================ -->
-<script src="gsap.min.js"></script>
-<script src="ScrollTrigger.min.js"></script>
-<script src="MotionPathPlugin.min.js"></script>
-<script src="script.js"></script>
-
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

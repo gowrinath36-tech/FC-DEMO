@@ -1,0 +1,2079 @@
+/* ============================================
+   FOREST CAFE — DESIGN TOKENS
+   ============================================ */
+@font-face {
+  font-family: 'Coffee Town';
+  src: url('assets/fonts/CoffeeTown.otf') format('opentype'),
+       url('assets/fonts/CoffeeTown.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* FOREST CAFE HERO BRAND REVEAL — font */
+@font-face {
+  font-family: 'Night Rumble';
+  src: url('assets/fonts/NightRumble-X3eP9.otf') format('opentype'),
+       url('assets/fonts/NightRumble-gx5G1.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ============================================
+   GLOBAL RESPONSIVE FOUNDATION
+   DO NOT PUT SECTION-SPECIFIC STYLES HERE
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/* Prevent horizontal overflow
+   without affecting vertical scrolling */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow-x: clip;
+}
+
+body {
+  position: relative;
+}
+
+
+/* Keep media inside its parent */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+
+/* Images behave predictably */
+img {
+  display: block;
+}
+
+
+/* Every section stays inside viewport */
+section,
+header,
+main,
+footer {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+
+/* Flex/Grid children are allowed to shrink */
+section > *,
+main > *,
+.wrap,
+.sts-wrap {
+  min-width: 0;
+}
+
+
+/* Prevent long text from creating horizontal overflow */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  overflow-wrap: break-word;
+}
+
+
+/* Form/media elements should not exceed parent */
+input,
+textarea,
+button,
+select {
+  max-width: 100%;
+}
+
+
+/* ============================================
+   MOBILE BASE
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+}
+
+
+/* ============================================
+   SMALL MOBILE
+   ============================================ */
+
+@media (max-width: 480px) {
+
+  section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+}
+
+:root {
+  /* Coffee world */
+  --deep-coffee: #5c3424;
+  --roasted-brown: #4A3022;
+  --coffee-gold: #9E6812;
+  --warm-cream: #F5E8D0;
+  --muted-cream: #B9AA95;
+
+  /* Site-wide moving gradient (replaces bg1/bg2/coffee-bg images) */
+  --grad-brown: #67422f;
+  --grad-teal: #2e6359;
+
+  /* Neumorphism shadow tones, derived from the gradient above */
+  --neu-dark: rgba(10, 8, 6, 0.55);
+  --neu-light: rgba(255, 236, 210, 0.08);
+
+  --display: 'Coffee Town', serif;
+  --body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+
+  /* ONE continuous animated backdrop behind every section
+     (soil-to-sip, menu/products, footer). Hero is untouched —
+     it has its own opaque parallax layers sitting on top of this,
+     so this never shows through the hero.
+
+     Layer 1 (top): hand-drawn line doodles (cup, leaf, bean,
+       swirl) — pure CSS/SVG, no image file — tiled and drifting
+       slowly for the "floating" feel.
+     Layer 2: a fine dark dot-grain for a matte, paper-like
+       texture instead of a shiny/glassy sheen.
+     Layer 3 (bottom): the moving brown → teal gradient. */
+  background-color: var(--deep-coffee);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='rgba(245,232,208,0.13)' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40,90 h58 a4,4 0 0 1 4,4 v10 a30,30 0 0 1 -30,30 h-6 a30,30 0 0 1 -30,-30 v-10 a4,4 0 0 1 4,-4 z'/%3E%3Cpath d='M100,98 q14,-2 14,10 q0,12 -14,10'/%3E%3Cpath d='M55,80 q4,-10 0,-18'/%3E%3Cpath d='M68,80 q4,-10 0,-18'/%3E%3Cpath d='M290,160 q40,-30 60,10 q-40,30 -60,-10 z'/%3E%3Cpath d='M292,162 q28,10 56,6'/%3E%3Cellipse cx='100' cy='330' rx='26' ry='16' transform='rotate(-18 100 330)'/%3E%3Cpath d='M84,326 q16,10 32,4' transform='rotate(-18 100 330)'/%3E%3Cpath d='M310,350 q10,-14 22,-4 q10,10 -2,20 q-12,8 -20,-4 q-6,-10 0,-12 z'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(rgba(0, 0, 0, 0.10) 1px, transparent 1px),
+    linear-gradient(
+      120deg,
+      var(--grad-brown) 0%,
+      var(--grad-teal) 45%,
+      var(--grad-brown) 75%,
+      var(--grad-teal) 100%
+    );
+  background-size: 420px 420px, 5px 5px, 320% 320%;
+  background-repeat: repeat, repeat, no-repeat;
+  background-position: 0 0, 0 0, 0% 50%;
+  background-attachment: fixed, fixed, fixed;
+  animation: bgFlow 30s ease-in-out infinite;
+
+  color: var(--warm-cream);
+  overflow-x: hidden;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@keyframes bgFlow {
+  0%   { background-position: 0 0,     0 0, 0% 50%; }
+  50%  { background-position: 60px 40px, 0 0, 100% 50%; }
+  100% { background-position: 0 0,     0 0, 0% 50%; }
+}
+
+/* Fixed backgrounds are heavy on mobile Safari/Chrome — keep the
+   gradient + animation, just switch attachment so scrolling stays smooth. */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll, scroll, scroll;
+  }
+}
+
+img { display: block; max-width: 100%; }
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  font-weight: 600;
+}
+
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+/* ============================================
+   LOADING SCREEN (WHITE THEME FOR VIDEO)
+   ============================================ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+  transition: opacity 0.8s var(--ease-organic), visibility 0.8s;
+}
+#loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.loader-video {
+  width: min(90vw, 420px);
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.loader-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #4A3022;
+  font-weight: 600;
+}
+
+.grinder-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+.grinder-svg { width: 92px; height: 92px; }
+.fill-track {
+  width: 160px; height: 3px;
+  background: rgba(245,232,208,0.15);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.fill-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--coffee-gold), var(--warm-cream));
+  border-radius: 3px;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem clamp(1.5rem, 5vw, 4rem);
+  transition: background 0.5s var(--ease-organic), padding 0.4s var(--ease-organic), backdrop-filter 0.5s;
+}
+nav.scrolled {
+  background: rgba(33, 23, 19, 0.82);
+  backdrop-filter: blur(10px);
+  padding: 1rem clamp(1.5rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(245, 232, 208, 0.08);
+}
+.nav-word {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  color: var(--warm-cream);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  list-style: none;
+}
+.nav-links a {
+  position: relative;
+  color: var(--warm-cream);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  transition: opacity 0.3s, color 0.3s;
+  padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #d4a373;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a.active {
+  opacity: 1;
+  color: #ffffff;
+}
+.nav-links a.active::after,
+.nav-links a:hover::after {
+  width: 100%;
+}
+@media (max-width: 700px) { .nav-links { display: none; } }
+
+/* ============================================
+   SECTION SCAFFOLDING
+   ============================================ */
+section { position: relative; }
+
+.world-coffee {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(15, 11, 9, 0.55) 45%,
+    rgba(12, 9, 7, 0.92) 100%
+  );
+  color: var(--warm-cream);
+}
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+/* ============================================
+   HERO PARALLAX SECTION
+   Desktop = 4 Layer Parallax
+   Mobile  = Single Mobile Hero Image
+   ============================================ */
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 680px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ============================================
+   HERO BACKGROUND WRAPPER
+   ============================================ */
+
+.hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  z-index: 1;
+}
+
+
+/* ============================================
+   DESKTOP — PARALLAX LAYERS
+   ============================================ */
+
+.hero-parallax-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-parallax-layer img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+
+  object-fit: cover;
+  object-position: bottom center;
+
+  display: block;
+  will-change: transform;
+}
+
+
+/* ============================================
+   LAYER ORDER
+   ============================================ */
+
+.hero-layer-sky {
+  z-index: 1;
+}
+
+.hero-layer-treeline {
+  z-index: 2;
+}
+
+.hero-layer-cafe {
+  z-index: 3;
+}
+
+.hero-layer-foreground {
+  z-index: 4;
+}
+
+
+/* ============================================
+   INDIVIDUAL LAYER ADJUSTMENTS
+   ============================================ */
+
+.hero-layer-treeline img,
+.hero-layer-cafe img {
+  width: 100%;
+  height: 100%;
+  min-height: 125vh;
+
+  object-fit: cover;
+  object-position: bottom center;
+
+  transform-origin: bottom center;
+}
+
+
+/* Cafe layer */
+.hero-layer-cafe img {
+  object-position: bottom center;
+  transform-origin: bottom center;
+}
+
+
+/* Foreground layer */
+.hero-layer-foreground img {
+  object-position: bottom center;
+  transform-origin: bottom center;
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 15%,
+      black 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 15%,
+      black 100%
+    );
+}
+
+
+/* ============================================
+   MOBILE IMAGE
+   Hidden on desktop
+   ============================================ */
+
+.hero-mobile-image {
+  display: none;
+
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-mobile-image img {
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
+
+  object-fit: cover;
+  object-position: center center;
+
+  display: block;
+}
+
+
+/* ============================================
+   HERO OVERLAY
+   ============================================ */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 5;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.10) 0%,
+      rgba(20, 15, 10, 0.65) 100%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ============================================
+   HERO → NEXT SECTION SEAM — SMOOTH WAVE
+   Pure CSS: an SVG wave used only as a mask, so the
+   curve is a true smooth Bezier (not a jagged polygon).
+   Filled with a solid warm brown pulled straight from
+   the hero's own dark overlay tone — no gradient — so
+   the wave reads as "hero's own edge", not a new colour.
+   ============================================ */
+
+.hero-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 110px;
+  z-index: 6;
+
+  pointer-events: none;
+
+  background-color: var(--deep-coffee);
+
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0,58 C150,10 300,100 450,60 C600,20 750,100 900,58 C1000,32 1100,32 1200,58 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0,58 C150,10 300,100 450,60 C600,20 750,100 900,58 C1000,32 1100,32 1200,58 L1200,120 L0,120 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  filter: drop-shadow(0 -5px 8px rgba(0, 0, 0, 0.4));
+}
+
+@media (max-width: 768px) {
+  .hero-container::after {
+    height: 64px;
+  }
+}
+
+
+/* ============================================
+   FOREST CAFE HERO BRAND REVEAL
+   Logo + wordmark, floating inside the empty
+   sky area. Independent of .hero-content.
+   ============================================ */
+
+.hero-brand-reveal {
+  position: absolute;
+
+  top: clamp(18%, 24vh, 30%);   /* was 6%,11vh,15% — now centered lower */
+  left: 50%;
+
+  z-index: 7;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: clamp(0.5rem, 1.8vh, 1.1rem);
+
+  text-align: center;
+  pointer-events: none;
+
+  will-change: transform, opacity;
+}
+
+.hero-brand-logo {
+  width: clamp(70px, 8vw, 140px);   /* back to previous size */
+  height: auto;
+
+  display: block;
+
+  filter:
+    drop-shadow(0 0 30px rgba(255, 214, 150, 0.35))
+    drop-shadow(0 12px 26px rgba(0, 0, 0, 0.45));
+
+  will-change: transform, opacity;
+}
+
+.hero-brand-text {
+  position: relative;
+
+  font-family: 'Night Rumble', 'Coffee Town', serif;
+  font-weight: 400;
+
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);   /* back to previous size */
+  letter-spacing: 0.14em;
+
+  line-height: 1;
+
+  background: linear-gradient(180deg, #FFF6E4 0%, #E9CE9E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  text-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
+
+  padding-bottom: clamp(0.5rem, 1.4vh, 0.9rem);
+
+  will-change: transform, opacity;
+}
+
+.hero-brand-text::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: clamp(40px, 6vw, 70px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E9CE9E, transparent);
+  opacity: 0.8;
+}
+
+/* FOREST CAFE HERO BRAND REVEAL — wind streaks */
+.hero-brand-wind {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: clamp(280px, 34vw, 520px);
+  height: auto;
+
+  z-index: -1;
+  overflow: visible;
+
+  pointer-events: none;
+}
+
+.wind-line {
+  fill: none;
+  stroke: rgba(255, 224, 178, 0.55);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 4 16;
+}
+
+/* Respect reduced motion — floating handled in JS,
+   but guard here in case of no-JS / CSS fallback */
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-brand-reveal,
+  .hero-brand-logo,
+  .hero-brand-text {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
+
+
+/* ============================================
+   HERO CONTENT
+   ============================================ */
+
+.hero-content {
+  position: relative;
+
+  z-index: 10;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  padding: 1rem;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+
+  background:
+    linear-gradient(
+      180deg,
+      #FFFFFF 0%,
+      rgba(255, 255, 255, 0.7) 100%
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  margin-top: 0.4rem;
+
+  font-size: 1.1rem;
+
+  letter-spacing: 0.25em;
+
+  text-transform: uppercase;
+
+  color: #E2D4C9;
+
+  opacity: 0.9;
+}
+
+
+/* ============================================
+   FLOATING COMPONENT CARDS
+   ============================================ */
+
+.hero-card {
+  position: absolute;
+
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  padding: 1rem 1.5rem;
+
+  border-radius: 16px;
+
+  color: #fff;
+
+  opacity: 0;
+}
+
+.card-left {
+  left: 8%;
+  bottom: 25%;
+
+  transform: translateX(-80px);
+}
+
+.card-right {
+  right: 8%;
+  bottom: 18%;
+
+  transform: translateX(80px);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+}
+
+.card-text h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.card-text p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+
+/* ============================================
+   MOBILE — SINGLE IMAGE
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  .hero-container {
+    height: 100svh;
+    min-height: 580px;
+  }
+
+
+  /* Hide all 4 desktop layers */
+
+  .hero-parallax-layer {
+    display: none;
+  }
+
+
+  /* Show mobile image */
+
+  .hero-mobile-image {
+    display: block;
+  }
+
+
+  /* Mobile image positioning */
+
+  .hero-mobile-image img {
+    object-position: center center;
+  }
+
+
+  /* Mobile overlay */
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(15, 10, 7, 0.12) 0%,
+        rgba(15, 10, 7, 0.55) 100%
+      );
+  }
+
+
+  /* Mobile content */
+
+  .hero-content {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+
+  .hero-title {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+
+    letter-spacing: 0.08em;
+
+    line-height: 1;
+  }
+
+
+  .hero-subtitle {
+    margin-top: 0.8rem;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.16em;
+
+    line-height: 1.6;
+  }
+
+
+  /* Hide floating cards on mobile */
+
+  .hero-card {
+    display: none;
+  }
+
+
+  /* FOREST CAFE HERO BRAND REVEAL — mobile */
+
+  .hero-brand-reveal {
+  top: clamp(14%, 17vh, 20%);
+  gap: 0.6rem;
+}
+
+.hero-brand-logo {
+  width: clamp(46px, 15vw, 70px);
+}
+
+.hero-brand-text {
+  font-size: clamp(1.5rem, 8vw, 2.1rem);
+  letter-spacing: 0.1em;
+}
+
+}
+
+
+/* ============================================
+   SMALL PHONES
+   ============================================ */
+
+@media (max-width: 420px) {
+
+  .hero-container {
+    min-height: 560px;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-brand-logo {
+    width: clamp(34px, 12vw, 50px);
+  }
+
+  .hero-brand-text {
+    font-size: 1.2rem;
+  }
+
+}
+
+/* ============================================
+   SOIL TO SIP — ONE CONTINUOUS SECTION
+   (background + journey cards + cafe ambience)
+   ============================================ */
+
+.soil-journey-section {
+  position: relative;
+  width: 100%;
+  min-height: 650px;
+  overflow: hidden;
+
+  background: transparent;
+}
+
+
+/* --------------------------------------------
+   BACKGROUND — image swapped out for the shared
+   moving gradient (see body{}); kept in the DOM
+   but hidden so nothing else has to change.
+   -------------------------------------------- */
+
+.soil-journey-bg {
+  display: none;
+}
+
+
+
+/* ============================================
+   JOURNEY CARDS — COMPACT POSITION, RIGHT-LEANING
+   (left side kept empty for future text/content)
+   ============================================ */
+
+.journey-cards {
+  position: relative;
+  z-index: 2;
+
+  width: calc(100% - 400px);
+
+  margin-left: 150px;
+  margin-top: 420px;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 18px;
+
+  padding: 20px 30px;
+}
+
+
+/* ============================================
+   CARDS — SCATTERED, UNEVEN "WAVE" MONTAGE
+   Each card gets its own tilt + vertical drift via
+   --tilt/--lift (nth-child groups below) instead of
+   sitting flat in a row — plus a soft neumorphic
+   dual shadow tuned to the brown/teal palette.
+   ============================================ */
+
+.journey-card {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: linear-gradient(155deg, rgba(103, 66, 47, 0.9), rgba(46, 99, 89, 0.85));
+
+  border: 1px solid rgba(255, 230, 190, 0.16);
+
+  margin-bottom: var(--lift, 0px);
+
+  box-shadow:
+    10px 10px 20px var(--neu-dark),
+    -6px -6px 14px var(--neu-light),
+    inset 0 1px 0 rgba(255, 245, 220, 0.14);
+
+  transform:
+    rotate(var(--tilt, 0deg))
+    perspective(900px)
+    rotateX(2deg);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    margin 0.4s ease;
+}
+
+.journey-card:nth-child(6n+1) { --tilt: -3deg; --lift: 22px; }
+.journey-card:nth-child(6n+2) { --tilt: 2deg;  --lift: 0px; }
+.journey-card:nth-child(6n+3) { --tilt: -1.5deg; --lift: 14px; }
+.journey-card:nth-child(6n+4) { --tilt: 3deg;  --lift: 4px; }
+.journey-card:nth-child(6n+5) { --tilt: -2deg; --lift: 26px; }
+.journey-card:nth-child(6n+6) { --tilt: 1.5deg; --lift: 8px; }
+
+/* Portrait 9:16 */
+.journey-card:nth-child(odd) {
+  width: 100px;
+  height: 140px;
+  flex: 0 0 100px;
+}
+
+/* Landscape 16:9 */
+.journey-card:nth-child(even) {
+  width: 180px;
+  height: 140px;
+  flex: 0 0 150px;
+}
+
+
+/* --------------------------------------------
+   IMAGE (single authoritative rule)
+   -------------------------------------------- */
+
+.journey-card img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.02);
+
+  transition: transform 0.5s ease;
+}
+
+
+/* --------------------------------------------
+   HOVER — SMALL 3D MOVEMENT
+   -------------------------------------------- */
+
+.journey-card:hover {
+  transform:
+    rotate(var(--tilt, 0deg))
+    perspective(900px)
+    translateY(-10px)
+    rotateX(4deg)
+    rotateY(-3deg);
+
+  box-shadow:
+    14px 14px 26px var(--neu-dark),
+    -8px -8px 16px var(--neu-light),
+    inset 0 1px 0 rgba(255, 245, 220, 0.2);
+}
+
+
+.journey-card:hover img {
+  transform: scale(1.08);
+}
+
+
+/* ============================================
+   LEFT-SIDE CAPTIONS — "OUR JOURNEY" / "OUR CAFE
+   AMBIENCE". Sit in the reserved empty gap on the
+   left of the journey-cards row and the cafe
+   ambience row (see the margin-left / left values
+   on those tracks below). Word-reveal on scroll is
+   handled by [data-reveal-text] in script.js; the
+   slow float keeps them gently alive even once
+   revealed, instead of just sitting still.
+   ============================================ */
+
+.soil-caption,
+.ambience-caption {
+  position: absolute;
+  left: clamp(24px, 4vw, 56px);
+  z-index: 2;
+  color: var(--warm-cream);
+  pointer-events: none;
+  animation: captionFloat 6.5s ease-in-out infinite;
+}
+
+.soil-caption .eyebrow,
+.ambience-caption .eyebrow {
+  display: block;
+  color: #d4a373;
+  margin-bottom: 0.5rem;
+}
+
+.soil-caption h3,
+.ambience-caption h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--warm-cream);
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+/* Journey caption — aligned with the journey-cards row
+   (which starts at margin-top: 420px) */
+.soil-caption {
+  top: 438px;
+  width: 130px;
+}
+
+.soil-caption h3 {
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+}
+
+/* Ambience caption — aligned with the cafe-ambience
+   band (top: -20px, height: 320px) */
+.ambience-caption {
+  top: 70px;
+  width: 300px;
+}
+
+.ambience-caption h3 {
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+}
+
+@keyframes captionFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soil-caption,
+  .ambience-caption {
+    animation: none;
+  }
+}
+
+/* Mobile: the reserved gap disappears (cards go full-width),
+   so the captions become simple centered headings above each
+   scrollable row instead of an absolute overlay. */
+@media (max-width: 768px) {
+
+  .soil-caption,
+  .ambience-caption {
+    position: static;
+    width: 100%;
+    text-align: center;
+    padding: 0 24px;
+    animation: none;
+  }
+
+  .ambience-caption {
+    margin-top: 32px;
+  }
+
+  .soil-caption {
+    margin-top: 4px;
+  }
+
+  .soil-caption h3,
+  .ambience-caption h3 {
+    font-size: clamp(1.3rem, 6vw, 1.7rem);
+  }
+}
+
+
+
+/* ============================================
+   CAFE AMBIENCE — MOVING CARDS
+   Sits directly below the journey cards, inside
+   the same Soil to Sip section. Desktop moves
+   horizontally on its own, automatically (see
+   initCafeAmbience in script.js); mobile falls
+   back to a plain horizontally-scrollable row.
+
+   The outer ".cafe-ambience-viewport" is the
+   fixed, non-moving frame: it starts exactly
+   where the reserved left text space ends, clips
+   anything beyond it, and fades cards out with a
+   mask as they approach that left edge — so the
+   moving cards never visually sit on top of the
+   text that will go on the left.
+
+   The inner ".cafe-ambience-cards" is the track
+   GSAP actually animates (translateX).
+   ============================================ */
+
+.cafe-ambience-viewport {
+  position: absolute;
+
+  left: 360px;
+  right: 0;
+
+  top: -20px;
+
+  height: 320px;
+
+  z-index: 3;
+
+  overflow: hidden;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    rgba(0, 0, 0, 0.4) 60px,
+    #000 130px,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    rgba(0, 0, 0, 0.4) 60px,
+    #000 130px,
+    #000 100%
+  );
+}
+
+.cafe-ambience-cards {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+
+  gap: 26px;
+
+  width: max-content;
+
+  will-change: transform;
+}
+
+
+/* --------------------------------------------
+   CAFE CARD — a scattered, hand-placed collage
+   instead of a flat row: each card gets its own
+   tilt + vertical drift (--tilt/--drift below) and
+   an alternating "soft blob" vs "rounded square"
+   shape, all sitting on a neumorphic dual shadow
+   tuned to the brown/teal gradient.
+   -------------------------------------------- */
+
+.cafe-card {
+  overflow: hidden;
+
+  background: #e5d5b9;
+
+  border: 1px solid rgba(255, 240, 215, 0.25);
+
+  box-shadow:
+    12px 12px 24px var(--neu-dark),
+    -8px -8px 18px var(--neu-light),
+    inset 0 1px 0 rgba(255, 245, 225, 0.2);
+
+  transform:
+    rotate(var(--tilt, 0deg))
+    translateY(var(--drift, 0px))
+    perspective(900px)
+    rotateX(2deg);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-radius 0.4s ease;
+}
+
+.cafe-card:nth-child(6n+1) { --tilt: -4deg; --drift: -18px; border-radius: 46% 54% 58% 42% / 48% 42% 58% 52%; }
+.cafe-card:nth-child(6n+2) { --tilt: 2deg;  --drift: 16px;  border-radius: 20px; }
+.cafe-card:nth-child(6n+3) { --tilt: -2deg; --drift: 6px;   border-radius: 46% 54% 58% 42% / 48% 42% 58% 52%; }
+.cafe-card:nth-child(6n+4) { --tilt: 3.5deg; --drift: -10px; border-radius: 20px; }
+.cafe-card:nth-child(6n+5) { --tilt: -1.5deg; --drift: 20px; border-radius: 46% 54% 58% 42% / 48% 42% 58% 52%; }
+.cafe-card:nth-child(6n+6) { --tilt: 2.5deg; --drift: -6px;  border-radius: 20px; }
+
+/* Portrait 9:16 */
+.cafe-card:nth-child(odd) {
+  width: 180px;
+  height: 180px;
+  flex: 0 0 180px;
+}
+
+/* Landscape 16:9 */
+.cafe-card:nth-child(even) {
+  width: 320px;
+  height: 180px;
+  flex: 0 0 320px;
+}
+
+
+.cafe-card img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  transition: transform 0.5s ease;
+}
+
+
+.cafe-card:hover {
+  border-radius: 20px;
+
+  transform:
+    rotate(var(--tilt, 0deg))
+    translateY(calc(var(--drift, 0px) - 10px))
+    perspective(900px)
+    rotateX(4deg)
+    rotateY(-2deg);
+
+  box-shadow:
+    16px 16px 30px var(--neu-dark),
+    -10px -10px 20px var(--neu-light);
+}
+
+
+.cafe-card:hover img {
+  transform: scale(1.06);
+}
+
+
+/* ============================================
+   MOBILE — SOIL TO SIP / JOURNEY / CAFE AMBIENCE
+   Both card rows become simple horizontally
+   scrollable strips of a plain, uniform size;
+   no GSAP horizontal movement (see script.js
+   matchMedia gate), no mask, no page overflow.
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  .soil-journey-section {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+
+  .journey-cards {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 90px;
+
+    align-items: center;
+
+    overflow-x: auto;
+    justify-content: flex-start;
+
+    gap: 16px;
+
+    padding: 30px 24px;
+
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .journey-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .journey-card,
+  .journey-card:nth-child(odd),
+  .journey-card:nth-child(even) {
+    width: 120px;
+    height: 120px;
+
+    flex: 0 0 120px;
+
+    border-radius: 15px;
+
+    margin-bottom: 0 !important;
+    transform: none !important;
+  }
+
+  .cafe-ambience-viewport {
+    position: relative;
+    left: 0;
+    right: auto;
+    top: auto;
+
+    width: 100%;
+    height: auto;
+
+    margin-top: 24px;
+    padding: 0 24px 30px;
+
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .cafe-ambience-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cafe-ambience-cards {
+    align-items: center;
+    transform: none !important;
+  }
+
+  .cafe-card,
+  .cafe-card:nth-child(odd),
+  .cafe-card:nth-child(even) {
+    width: 140px;
+    height: 140px;
+
+    flex: 0 0 140px;
+
+    border-radius: 18px !important;
+    transform: none !important;
+  }
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-card,
+  .journey-card img,
+  .cafe-card,
+  .cafe-card img {
+    transition: none !important;
+  }
+}
+
+
+
+/* ============================================
+   MENU + COFFEE PRODUCTS SECTION
+   (one continuous section, shared background)
+   ============================================ */
+
+.menu-products-section {
+  position: relative;
+  width: 100%;
+  background: transparent; /* #1d0801 ku badhula transparent */
+  color: var(--warm-cream);
+  overflow: hidden;
+}
+
+/* Gradient overlay removed here on purpose — it darkened the
+   leaf background image in a way that didn't look right. */
+
+
+.menu-products-bg {
+  display: none;
+}
+
+.menu-products-wrap {
+  position: relative;
+  z-index: 2;
+  padding: clamp(5rem, 9vw, 8rem) 0;
+}
+
+.menu-board-wrap {
+  width: min(1300px, 92%);
+  margin: 0 auto clamp(4rem, 8vw, 6rem);
+}
+
+.menu-board-heading {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.menu-board-heading span {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 0.6rem;
+  color: #d4a373;
+}
+
+.menu-board-heading h2 {
+  font-family: var(--display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  margin: 0;
+  color: var(--warm-cream);
+}
+
+.menu-board-heading p {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.menu-board-image {
+  display: block;
+  width: 100%;
+}
+
+.menu-board-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 232, 208, 0.1);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+
+
+/* --------------------------------------------
+   RESPONSIVE
+   -------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .coffee-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .coffee-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  padding: clamp(4rem, 9vh, 6rem) 0 2.5rem;
+  text-align: center;
+}
+footer .display { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.6rem; }
+footer .eyebrow { margin-bottom: 2.5rem; opacity: 0.5; }
+.footer-links { display: flex; justify-content: center; gap: clamp(1.2rem, 4vw, 2.5rem); flex-wrap: wrap; margin-bottom: 2.5rem; list-style: none; }
+.footer-links a { color: var(--warm-cream); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.3s; }
+.footer-links a:hover { opacity: 1; color: #d4a373; }
+.footer-fine { font-size: 0.68rem; opacity: 0.35; }
+
+/* ============================================
+   TEXT REVEAL (word-by-word, on scroll)
+   Applied to any element with [data-reveal-text].
+   JS (script.js: initTextReveal) splits the text
+   into words and animates each one in — gives the
+   heading its own bit of movement instead of the
+   page sitting still.
+   ============================================ */
+.reveal-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.reveal-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   UTILITY & GLASSMORPHISM
+   ============================================ */
+.reveal { opacity: 0; transform: translateY(28px); }
+
+.glass {
+  background: rgba(245, 232, 208, 0.07);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid rgba(245, 232, 208, 0.14);
+  border-radius: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+:focus-visible { outline: 2px solid var(--coffee-gold); outline-offset: 3px; }
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+/* ============================================
+   MENU HIGHLIGHTS & SPACING ADJUSTMENTS
+   ============================================ */
+
+.menu-products-wrap {
+  padding: clamp(3rem, 5vw, 5rem) 0;
+}
+
+/* TOP HIGHLIGHTS BOARD */
+.menu-highlights-layout {
+  width: min(1100px, 90%);
+  margin: 0 auto clamp(3.5rem, 6vw, 5rem);
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.menu-highlights-left {
+  flex: 0 0 28%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eyebrow-highlights {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d4a373;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.highlights-title {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--warm-cream);
+  margin-bottom: 1.8rem;
+}
+
+.btn-view-menu {
+  background: #312117;
+  border: none;
+  color: #f5e8d0;
+  padding: 0.85rem 1.6rem;
+  border-radius: 30px;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    7px 7px 14px rgba(0, 0, 0, 0.45),
+    -5px -5px 12px rgba(120, 90, 65, 0.18);
+}
+
+.btn-view-menu:hover {
+  background: #9e6812;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow:
+    inset 4px 4px 10px rgba(0, 0, 0, 0.3),
+    inset -3px -3px 8px rgba(255, 200, 130, 0.25);
+}
+
+/* RIGHT: 5 CARDS GRID */
+.menu-highlights-right {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.highlight-card {
+  background: linear-gradient(155deg, #7a5138 0%, var(--grad-teal) 130%);
+  border-radius: 18px;
+  padding: 10px;
+  text-align: center;
+  box-shadow:
+    8px 8px 16px var(--neu-dark),
+    -6px -6px 14px var(--neu-light);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    12px 12px 22px var(--neu-dark),
+    -8px -8px 16px var(--neu-light);
+}
+
+.highlight-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.highlight-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.highlight-card h4 {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f5e8d0;
+  margin-bottom: 4px;
+}
+
+.highlight-card .price {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #d4a373;
+}
+
+/* MODAL STYLES FOR MENU IMAGE */
+.menu-modal {
+  display: none; 
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.menu-modal.active {
+  display: flex;
+}
+
+.modal-content-wrap {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 12px;
+}
+
+.modal-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-modal:hover {
+  color: #d4a373;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .menu-highlights-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-highlights-right {
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-highlights-right {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   BG2 SECTION STYLES
+   ============================================ */
+.bg2-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.bg2-img {
+  display: none;
+}
+
+.bg2-content {
+  position: relative;
+  z-index: 2;
+  width: min(1240px, 90%);
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Direct override for section & wrapper background */
+.menu-products-section,
+.menu-products-wrap,
+.menu-board-wrap {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* (No top gradient here anymore — removed per feedback, it
+   darkened the leaf bg image in a way that looked off.) */
+
+/* ============================================
+   NEW CAFE PRODUCTS CLAYMORPHISM STYLES
+   ============================================ */
+.cafe-products-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+  width: min(1280px, 92%);
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.products-clay-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.cafe-prod-card {
+  /* Same brown → teal family as the page's moving gradient, so the
+     cards read as part of the backdrop instead of a separate block. */
+  background: linear-gradient(155deg, #7a5138 0%, var(--grad-teal) 130%);
+  border: none;
+  border-radius: 22px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    10px 10px 20px var(--neu-dark),
+    -8px -8px 16px var(--neu-light),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.06);
+}
+
+.cafe-prod-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    14px 14px 26px var(--neu-dark),
+    -10px -10px 20px var(--neu-light);
+}
+
+.cafe-prod-img-wrap {
+  width: 100%;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+}
+
+.cafe-prod-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cafe-prod-card h4 {
+  color: #f5e8d0;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.05em;
+}
+
+.cafe-prod-card .price {
+  color: #d4a373;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.products-text-content {
+  color: #f5e8d0;
+}
+
+.products-text-content .eyebrow-text {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: #d4a373;
+  margin-bottom: 0.5rem;
+}
+
+.products-text-content h2 {
+  font-family: var(--display, sans-serif);
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.products-text-content p {
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 1.8rem;
+}
+
+@media (max-width: 900px) {
+  .cafe-products-container {
+    grid-template-columns: 1fr;
+  }
+  .products-text-content {
+    order: -1;
+    text-align: center;
+  }
+}
+
+/* 1. Remove background gradient overlay */
+#soil-to-sip,
+.soil-journey-section {
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* Pseudo-element blend gradients (::before / ::after) at the
+   section's edges are left ENABLED on purpose (see the original
+   .soil-journey-section::after rule near the top of this file) —
+   they're what makes the transition into the next background
+   invisible instead of a hard cut. */
+
+/* ============================================
+   MOBILE RESPONSIVE OVERRIDES (Hero Untouched)
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  /* 1. cafe-ambience முதல் footer வரை ஒரே moving gradient bg —
+     mobi-bg.png ku badhula body{} la irukura animated gradient
+     already தெரியும், extra image வேணாம். */
+  #soil-to-sip,
+  #menu-products,
+  #cafe-products-section {
+    background: transparent !important;
+  }
+
+  /* 2. GALLERY DIRECT GRID DISPLAY (NO HORIZONTAL SCROLL) */
+  .journey-cards {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 20px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* 2 Column Direct Grid */
+    gap: 12px !important;
+    padding: 16px !important;
+    overflow-x: visible !important; /* Horizontal scroll disabled */
+  }
+
+  .journey-card,
+  .journey-card:nth-child(odd),
+  .journey-card:nth-child(even) {
+    width: 100% !important;
+    height: 140px !important;
+    flex: none !important;
+    margin-bottom: 0 !important;
+    transform: none !important; /* Remove 3D transform for better mobile fit */
+  }
+
+  /* 3. CAFE AMBIENCE DIRECT GRID DISPLAY (NO HORIZONTAL SCROLL) */
+  .cafe-ambience-viewport {
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 16px !important;
+    overflow-x: visible !important; /* Direct display */
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+  .cafe-ambience-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* 2 Column Direct Grid */
+    gap: 12px !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  .cafe-card,
+  .cafe-card:nth-child(odd),
+  .cafe-card:nth-child(even) {
+    width: 100% !important;
+    height: 130px !important;
+    flex: none !important;
+    border-radius: 18px !important;
+    transform: none !important;
+  }
+
+  /* 4. MENU HIGHLIGHTS MOBILE FIX */
+  .menu-highlights-layout {
+    width: 92% !important;
+    padding: 1.5rem !important;
+    margin-top: 30px !important;
+    flex-direction: column !important;
+  }
+
+  .menu-highlights-left {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .menu-highlights-right {
+    width: 100% !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* 5. PRODUCTS SECTION MOBILE FIX */
+  .cafe-products-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    width: 92% !important;
+  }
+
+  .products-clay-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .products-text-content {
+    order: -1;
+    text-align: center;
+  }
+
+  /* Hide individual section background images on mobile since body has main bg */
+  .soil-journey-bg,
+  .menu-products-bg,
+  .bg2-img {
+    display: none !important;
+  }
+}
